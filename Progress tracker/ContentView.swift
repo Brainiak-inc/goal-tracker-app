@@ -13,7 +13,11 @@ struct ContentView: View {
         TabView {
             CompletedGoalsView()
                 .tabItem {
-                    Label("Menu", systemImage: "list.dash")
+                    Label("Completed goals", systemImage: "list.dash")
+                }
+            GoalsInProgress()
+                .tabItem {
+                    Label("Goals in progress", systemImage: "list.dash")
                 }
         }
     }
