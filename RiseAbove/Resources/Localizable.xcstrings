@@ -1,0 +1,1724 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ of %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ из %2$@"
+          }
+        }
+      }
+    },
+    "%@ per 100 m" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ на 100 м"
+          }
+        }
+      }
+    },
+    "%@ per 100 yd" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ на 100 ярдов"
+          }
+        }
+      }
+    },
+    "%@ per km" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ на км"
+          }
+        }
+      }
+    },
+    "%@ per mile" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ на милю"
+          }
+        }
+      }
+    },
+    "%@ per week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ за неделю"
+          }
+        }
+      }
+    },
+    "%@ · %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "%@: %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@: %2$@"
+          }
+        }
+      }
+    },
+    "%lld TSS" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld TSS"
+          }
+        }
+      }
+    },
+    "%lld W" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld Вт"
+          }
+        }
+      }
+    },
+    "%lld bpm" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld уд/мин"
+          }
+        }
+      }
+    },
+    "%lld hours" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld hour"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld hours"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld час"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld часа"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld часов"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld часа"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld minutes" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minute"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld minutes"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минута"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минуты"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минут"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld минуты"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld of %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld из %2$lld"
+          }
+        }
+      }
+    },
+    "%lld%%" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld%%"
+          }
+        }
+      }
+    },
+    "3 months" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3 месяца"
+          }
+        }
+      }
+    },
+    "6 weeks" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6 недель"
+          }
+        }
+      }
+    },
+    "A safe weekly increase towards the target volume." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Безопасный недельный прирост к целевому объёму."
+          }
+        }
+      }
+    },
+    "A volume-based estimate to guide you, not a medical assessment." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оценка-ориентир по объёму, не медицинский расчёт."
+          }
+        }
+      }
+    },
+    "Add your training data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавь данные о тренировках"
+          }
+        }
+      }
+    },
+    "Added: %lld, updated: %lld, skipped: %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавлено: %1$lld, обновлено: %2$lld, пропущено: %3$lld"
+          }
+        }
+      }
+    },
+    "Ahead of schedule" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Успеваешь с запасом"
+          }
+        }
+      }
+    },
+    "All workouts" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все тренировки"
+          }
+        }
+      }
+    },
+    "App language" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Язык приложения"
+          }
+        }
+      }
+    },
+    "Apple Health check" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка Apple Health"
+          }
+        }
+      }
+    },
+    "Behind by about %lld weeks" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Behind by about %lld week"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Behind by about %lld weeks"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Отстаёшь примерно на %lld неделю"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Отстаёшь примерно на %lld недели"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Отстаёшь примерно на %lld недель"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Отстаёшь примерно на %lld недели"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Bike" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Велосипед"
+          }
+        }
+      }
+    },
+    "By discipline" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "По дисциплинам"
+          }
+        }
+      }
+    },
+    "Choose a CSV file exported from Garmin Connect: Activities → Export CSV." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбери CSV-файл, выгруженный из Garmin Connect: Активности → Экспорт CSV."
+          }
+        }
+      }
+    },
+    "Couldn't read the file" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось прочитать файл"
+          }
+        }
+      }
+    },
+    "Data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Данные"
+          }
+        }
+      }
+    },
+    "Day" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "День"
+          }
+        }
+      }
+    },
+    "Default value, no runs with heart rate yet" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Значение по умолчанию: пока нет пробежек с пульсом"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        }
+      }
+    },
+    "Delete imported data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить импортированные данные"
+          }
+        }
+      }
+    },
+    "Delete imported data?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить импортированные данные?"
+          }
+        }
+      }
+    },
+    "Discipline" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дисциплина"
+          }
+        }
+      }
+    },
+    "Disciplines" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дисциплины"
+          }
+        }
+      }
+    },
+    "Distance" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дистанция"
+          }
+        }
+      }
+    },
+    "Duration" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Длительность"
+          }
+        }
+      }
+    },
+    "Edit goal" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить цель"
+          }
+        }
+      }
+    },
+    "Estimated from runs of 20 minutes or longer" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оценка по пробежкам от 20 минут"
+          }
+        }
+      }
+    },
+    "Fast enough" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темп достаточный"
+          }
+        }
+      }
+    },
+    "Fatigue" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усталость"
+          }
+        }
+      }
+    },
+    "Fatigue (ATL)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Усталость (ATL)"
+          }
+        }
+      }
+    },
+    "Fitness" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фитнес"
+          }
+        }
+      }
+    },
+    "Fitness (CTL)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фитнес (CTL)"
+          }
+        }
+      }
+    },
+    "Fitness changed by %@ over the week — it's declining." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фитнес за неделю изменился на %@ — снижается."
+          }
+        }
+      }
+    },
+    "Fitness changed by %@ over the week — it's growing." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фитнес за неделю изменился на %@ — растёт."
+          }
+        }
+      }
+    },
+    "Fitness changed by %@ over the week — it's holding steady." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фитнес за неделю изменился на %@ — держится на уровне."
+          }
+        }
+      }
+    },
+    "Fitness is declining, so the volume estimate of %lld%% was lowered to %lld%%." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фитнес снижается — оценка объёма %1$lld%% снижена до %2$lld%%."
+          }
+        }
+      }
+    },
+    "Fitness is growing, so the volume estimate of %lld%% was raised to %lld%%." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фитнес растёт — оценка объёма %1$lld%% поднята до %2$lld%%."
+          }
+        }
+      }
+    },
+    "Fitness is steady, so the estimate is based on volume alone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фитнес стабилен — оценка только по объёму."
+          }
+        }
+      }
+    },
+    "Form" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Форма"
+          }
+        }
+      }
+    },
+    "Form (TSB)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Форма (TSB)"
+          }
+        }
+      }
+    },
+    "Form · %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Форма · %@"
+          }
+        }
+      }
+    },
+    "Full distance" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Полная дистанция"
+          }
+        }
+      }
+    },
+    "Half distance" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Половина дистанции"
+          }
+        }
+      }
+    },
+    "Health check" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка Health"
+          }
+        }
+      }
+    },
+    "Health data isn't available on this device." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Данные Health недоступны на этом устройстве."
+          }
+        }
+      }
+    },
+    "Heart rate attached to workout" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пульс привязан к тренировке"
+          }
+        }
+      }
+    },
+    "Heart rate from samples" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пульс из замеров"
+          }
+        }
+      }
+    },
+    "Heart rate from samples only" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пульс только из замеров"
+          }
+        }
+      }
+    },
+    "Heart rate in workout" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пульс в тренировке"
+          }
+        }
+      }
+    },
+    "Heart rate samples" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Замеров пульса"
+          }
+        }
+      }
+    },
+    "Heart rate sources" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Источники пульса"
+          }
+        }
+      }
+    },
+    "Hours" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Часы"
+          }
+        }
+      }
+    },
+    "How ready are you for the start?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оцени свою готовность к старту"
+          }
+        }
+      }
+    },
+    "Imperial" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Имперская"
+          }
+        }
+      }
+    },
+    "Import Garmin CSV" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импорт CSV из Garmin"
+          }
+        }
+      }
+    },
+    "Import a CSV export from Garmin Connect or check what Apple Health shares. Analytics appear as soon as there are workouts." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортируй CSV-выгрузку из Garmin Connect или проверь, что передаёт Apple Health. Аналитика появится, как только будут тренировки."
+          }
+        }
+      }
+    },
+    "Import finished" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импорт завершён"
+          }
+        }
+      }
+    },
+    "Import workouts to see how fitness, fatigue, and form change." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортируй тренировки, чтобы видеть, как меняются фитнес, усталость и форма."
+          }
+        }
+      }
+    },
+    "Imported workouts" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортировано тренировок"
+          }
+        }
+      }
+    },
+    "Imported workouts will be removed from this iPhone. Your Health data stays as it is." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импортированные тренировки будут удалены с этого iPhone. Данные в «Здоровье» не изменятся."
+          }
+        }
+      }
+    },
+    "Language" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Язык"
+          }
+        }
+      }
+    },
+    "Load" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нагрузка"
+          }
+        }
+      }
+    },
+    "Load (TSS)" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нагрузка (TSS)"
+          }
+        }
+      }
+    },
+    "Loading…" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загрузка…"
+          }
+        }
+      }
+    },
+    "Metric" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Метрическая"
+          }
+        }
+      }
+    },
+    "Minutes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Минуты"
+          }
+        }
+      }
+    },
+    "No distance" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет дистанции"
+          }
+        }
+      }
+    },
+    "No workouts found. Check access in Settings → Health → Data Access & Devices." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировки не найдены. Проверь доступ: Настройки → Здоровье → Доступ к данным и устройства."
+          }
+        }
+      }
+    },
+    "No workouts in this discipline yet" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В этой дисциплине пока нет тренировок"
+          }
+        }
+      }
+    },
+    "No workouts yet" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировок пока нет"
+          }
+        }
+      }
+    },
+    "None" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет"
+          }
+        }
+      }
+    },
+    "OK" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ОК"
+          }
+        }
+      }
+    },
+    "On track" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Идёшь в графике"
+          }
+        }
+      }
+    },
+    "Opens iOS Settings for this app." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Откроет настройки iOS для этого приложения."
+          }
+        }
+      }
+    },
+    "Other" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Другое"
+          }
+        }
+      }
+    },
+    "Overview" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обзор"
+          }
+        }
+      }
+    },
+    "Pace for the target time" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темп для целевого времени"
+          }
+        }
+      }
+    },
+    "Period" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Период"
+          }
+        }
+      }
+    },
+    "Pick a distance and a target time. The estimate compares your recent weekly volume and longest sessions with what the race needs." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбери дистанцию и целевое время. Оценка сравнит твой недавний недельный объём и самые длинные тренировки с тем, что нужно для старта."
+          }
+        }
+      }
+    },
+    "Plan" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "План"
+          }
+        }
+      }
+    },
+    "Power" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мощность"
+          }
+        }
+      }
+    },
+    "Race date" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата старта"
+          }
+        }
+      }
+    },
+    "Race date is set" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата старта известна"
+          }
+        }
+      }
+    },
+    "Race goal" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цель старта"
+          }
+        }
+      }
+    },
+    "Readiness" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готовность"
+          }
+        }
+      }
+    },
+    "Recent" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последние"
+          }
+        }
+      }
+    },
+    "Refresh" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обновить"
+          }
+        }
+      }
+    },
+    "Remove goal" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Убрать цель"
+          }
+        }
+      }
+    },
+    "Run" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бег"
+          }
+        }
+      }
+    },
+    "Set a race goal" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задать цель старта"
+          }
+        }
+      }
+    },
+    "Settings" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Настройки"
+          }
+        }
+      }
+    },
+    "Source" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Источник"
+          }
+        }
+      }
+    },
+    "Sources" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Источники"
+          }
+        }
+      }
+    },
+    "Starting from scratch" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начинаю с нуля"
+          }
+        }
+      }
+    },
+    "Strength" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Силовая"
+          }
+        }
+      }
+    },
+    "Summary" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сводка"
+          }
+        }
+      }
+    },
+    "Swim" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Плавание"
+          }
+        }
+      }
+    },
+    "TSS over 7 days" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TSS за 7 дней"
+          }
+        }
+      }
+    },
+    "Target finish time" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Целевое время финиша"
+          }
+        }
+      }
+    },
+    "The cutoff is 17 hours for the full distance and 8 hours 30 minutes for the half. A faster goal raises the target volumes." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Лимит времени — 17 часов на полной дистанции и 8 часов 30 минут на половине. Чем быстрее цель, тем выше нужные объёмы."
+          }
+        }
+      }
+    },
+    "There's no volume to assess yet. Import your workouts." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пока нет объёма для оценки. Импортируй тренировки."
+          }
+        }
+      }
+    },
+    "They appear here after an import or a sync with Apple Health." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Они появятся здесь после импорта или синхронизации с Apple Health."
+          }
+        }
+      }
+    },
+    "This section is being built. Overview and data import already work." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Раздел в разработке. Обзор и импорт данных уже работают."
+          }
+        }
+      }
+    },
+    "This week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На этой неделе"
+          }
+        }
+      }
+    },
+    "Threshold heart rate" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пороговый пульс"
+          }
+        }
+      }
+    },
+    "Time" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время"
+          }
+        }
+      }
+    },
+    "Too slow" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темп недостаточный"
+          }
+        }
+      }
+    },
+    "Units" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Единицы измерения"
+          }
+        }
+      }
+    },
+    "Volume last week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Объём за прошлую неделю"
+          }
+        }
+      }
+    },
+    "Volume · 10 weeks" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Объём · 10 недель"
+          }
+        }
+      }
+    },
+    "Volumes are at the target level" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Объёмы на целевом уровне"
+          }
+        }
+      }
+    },
+    "Volumes then grow more carefully, by 4.5 percent a week instead of 7, with three extra months of buffer." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Объёмы тогда растут осторожнее: на 4,5 процента в неделю вместо 7, плюс три месяца запаса."
+          }
+        }
+      }
+    },
+    "Weakest link:" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Слабое звено:"
+          }
+        }
+      }
+    },
+    "With heart rate" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С пульсом"
+          }
+        }
+      }
+    },
+    "Workouts" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировки"
+          }
+        }
+      }
+    },
+    "Year" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Год"
+          }
+        }
+      }
+    },
+    "about %@ years" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "около %@ года"
+          }
+        }
+      }
+    },
+    "building fitness" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "рост формы"
+          }
+        }
+      }
+    },
+    "date not set" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "дата не выбрана"
+          }
+        }
+      }
+    },
+    "fresh" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "свежесть"
+          }
+        }
+      }
+    },
+    "from samples" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "из замеров"
+          }
+        }
+      }
+    },
+    "from workout" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "из тренировки"
+          }
+        }
+      }
+    },
+    "goal %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "цель %@"
+          }
+        }
+      }
+    },
+    "kilometers, km/h" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "километры, км/ч"
+          }
+        }
+      }
+    },
+    "kilometers, pace per km" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "километры, темп на км"
+          }
+        }
+      }
+    },
+    "longest" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "самая длинная"
+          }
+        }
+      }
+    },
+    "meters, pace per 100 m" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "метры, темп на 100 м"
+          }
+        }
+      }
+    },
+    "miles, mph" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "мили, миль в час"
+          }
+        }
+      }
+    },
+    "miles, pace per mile" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "мили, темп на милю"
+          }
+        }
+      }
+    },
+    "needed: %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "нужно: %@"
+          }
+        }
+      }
+    },
+    "neutral" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "норма"
+          }
+        }
+      }
+    },
+    "no data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "нет данных"
+          }
+        }
+      }
+    },
+    "over 42 days" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "за 42 дня"
+          }
+        }
+      }
+    },
+    "over 7 days" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "за 7 дней"
+          }
+        }
+      }
+    },
+    "overall" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "общая"
+          }
+        }
+      }
+    },
+    "overreaching" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "перегрузка"
+          }
+        }
+      }
+    },
+    "per week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "в неделю"
+          }
+        }
+      }
+    },
+    "trend after a week of data" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "тренд появится через неделю данных"
+          }
+        }
+      }
+    },
+    "yards, pace per 100 yd" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ярды, темп на 100 ярдов"
+          }
+        }
+      }
+    },
+    "≈ %lld months" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "≈ %lld month"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "≈ %lld months"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "≈ %lld месяц"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "≈ %lld месяца"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "≈ %lld месяцев"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "≈ %lld месяца"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

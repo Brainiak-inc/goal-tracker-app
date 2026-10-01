@@ -1,0 +1,236 @@
+import SwiftUI
+import TrainingKit
+
+struct OverviewView: View {
+    @Environment(ActivityLibrary.self) private var library
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 14) {
+                    if library.hasData {
+                        if let fitness = library.fitness {
+                            HUDCard(fitness: fitness, trend: library.fitnessTrend, weeklyStress: library.weeklyStress)
+                            FormCard(fitness: fitness, points: Array(library.series.suffix(42)))
+                        }
+                        VolumeCard()
+                        RecentActivities()
+                    } else {
+                        EmptyLibraryCard()
+                    }
+                }
+                .padding(.horizontal, 16)
+                .padding(.bottom, 24)
+            }
+            .background { ConsoleBackground() }
+            .navigationTitle("Overview")
+            .settingsToolbar()
+        }
+    }
+}
+
+private struct EmptyLibraryCard: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text("Add your training data")
+                .font(.title3.bold())
+                .foregroundStyle(Palette.text)
+            Text("Import a CSV export from Garmin Connect or check what Apple Health shares. Analytics appear as soon as there are workouts.")
+                .foregroundStyle(Palette.muted)
+                .fixedSize(horizontal: false, vertical: true)
+            GarminImportButton()
+                .buttonStyle(.glassProminent)
+            NavigationLink {
+                HealthDiagnosticsView()
+            } label: {
+                Label("Apple Health check", systemImage: "heart.text.square")
+            }
+            .buttonStyle(.glass)
+        }
+        .padding(18)
+        .consoleCard()
+    }
+}
+
+private struct HUDCard: View {
+    let fitness: FitnessSnapshot
+    let trend: (trend: Trend, delta: Double)?
+    let weeklyStress: Double
+
+    var body: some View {
+        ViewThatFits(in: .horizontal) {
+            HStack(alignment: .top, spacing: 0) {
+                metrics
+            }
+            VStack(alignment: .leading, spacing: 14) {
+                metrics
+            }
+        }
+        .padding(.vertical, 14)
+        .padding(.horizontal, 4)
+        .consoleCard()
+    }
+
+    @ViewBuilder
+    private var metrics: some View {
+        HUDMetric(title: "Form", color: Palette.form) {
+            Text(fitness.form.displayRounded, format: .number)
+        } caption: {
+            Text(FormZone(form: fitness.form).title)
+        }
+        HUDMetric(title: "Fitness", color: Palette.fitness) {
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                Text(fitness.fitness.displayRounded, format: .number)
+                if let trend {
+                    Text(trend.trend.arrow)
+                        .font(.footnote)
+                }
+            }
+        } caption: {
+            if let trend {
+                Text("\(Formatting.signed(trend.delta)) per week")
+            } else {
+                Text("trend after a week of data")
+            }
+        }
+        HUDMetric(title: "Load", color: Palette.fatigue) {
+            Text(weeklyStress.displayRounded, format: .number)
+        } caption: {
+            Text("TSS over 7 days")
+        }
+    }
+}
+
+private struct HUDMetric<Value: View, Caption: View>: View {
+    let title: LocalizedStringKey
+    let color: Color
+    @ViewBuilder let value: Value
+    @ViewBuilder let caption: Caption
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 4) {
+            Text(title)
+                .consoleLabel()
+            value
+                .font(.system(.title2, design: .monospaced, weight: .bold))
+                .foregroundStyle(color)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+            caption
+                .font(.caption)
+                .foregroundStyle(Palette.muted)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 12)
+    }
+}
+
+private struct FormCard: View {
+    let fitness: FitnessSnapshot
+    let points: [LoadPoint]
+
+    var body: some View {
+        NavigationLink {
+            FormView()
+        } label: {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    Text("Form")
+                        .consoleLabel()
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.footnote.weight(.semibold))
+                        .foregroundStyle(Palette.muted)
+                }
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
+                    Text("Fitness")
+                        .foregroundStyle(Palette.text)
+                    Text(fitness.fitness.displayRounded, format: .number)
+                        .font(.system(.title3, design: .monospaced, weight: .bold))
+                        .foregroundStyle(Palette.fitness)
+                }
+                LoadChart(points: points, compact: true)
+                    .frame(height: 64)
+            }
+            .padding(16)
+            .consoleCard()
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+private struct VolumeCard: View {
+    @Environment(ActivityLibrary.self) private var library
+    @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
+
+    private var rows: [(discipline: Discipline, last: Double, trend: Trend?)] {
+        Discipline.triathlon.compactMap { discipline in
+            let weeks = library.weeklyVolume(discipline)
+            guard weeks.reduce(0, +) > 0, let last = weeks.last else { return nil }
+            return (discipline, last, Trend.volume(weeks))
+        }
+    }
+
+    var body: some View {
+        if !rows.isEmpty {
+            VStack(alignment: .leading, spacing: 10) {
+                Text("Volume last week")
+                    .consoleLabel()
+                ForEach(rows, id: \.discipline) { row in
+                    ViewThatFits(in: .horizontal) {
+                        HStack {
+                            name(row.discipline)
+                            Spacer()
+                            value(row)
+                        }
+                        VStack(alignment: .leading, spacing: 2) {
+                            name(row.discipline)
+                            value(row)
+                        }
+                    }
+                }
+            }
+            .padding(16)
+            .consoleCard()
+        }
+    }
+
+    private func name(_ discipline: Discipline) -> some View {
+        Text(discipline.title)
+            .foregroundStyle(Palette.text)
+    }
+
+    private func value(_ row: (discipline: Discipline, last: Double, trend: Trend?)) -> some View {
+        HStack(spacing: 6) {
+            Text(Formatting.distance(row.last, discipline: row.discipline, units: units))
+                .font(.system(.body, design: .monospaced))
+            if let trend = row.trend {
+                Text(trend.arrow)
+                    .foregroundStyle(trend == .up ? Palette.fitness : trend == .down ? Palette.fatigue : Palette.muted)
+            }
+        }
+    }
+}
+
+private struct RecentActivities: View {
+    @Environment(ActivityLibrary.self) private var library
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Recent")
+                .font(.title3.bold())
+                .foregroundStyle(Palette.text)
+                .padding(.top, 6)
+            VStack(spacing: 0) {
+                ForEach(Array(library.recent.prefix(8).enumerated()), id: \.element.identity) { index, activity in
+                    if index > 0 {
+                        Divider().overlay(Color.white.opacity(0.06))
+                    }
+                    ActivityRow(activity: activity, detail: .stress(library.stress(for: activity)))
+                }
+            }
+            .consoleCard(brackets: false)
+        }
+    }
+}

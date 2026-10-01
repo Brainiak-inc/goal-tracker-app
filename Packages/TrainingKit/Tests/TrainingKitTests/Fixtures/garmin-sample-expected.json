@@ -1,0 +1,93 @@
+{
+ "skipped": 2,
+ "activities": [
+  {
+   "start": "2026-09-21T08:00:00.000Z",
+   "discipline": "swim",
+   "garminType": "Open Water Swimming",
+   "title": "Озеро",
+   "durationMs": 11140000,
+   "distanceKm": 9.95,
+   "avgHr": 135,
+   "maxHr": 152,
+   "calories": 1250
+  },
+  {
+   "start": "2026-09-23T20:00:00.000Z",
+   "discipline": "bike",
+   "garminType": "Indoor Cycling",
+   "title": "Zwift",
+   "durationMs": 3600000,
+   "distanceKm": 25.3,
+   "avgHr": null,
+   "maxHr": null,
+   "calories": 500
+  },
+  {
+   "start": "2026-09-24T06:30:00.000Z",
+   "discipline": "run",
+   "garminType": "Treadmill Running",
+   "title": "Treadmill, intervals",
+   "durationMs": 2700000,
+   "distanceKm": 8,
+   "avgHr": 162,
+   "maxHr": 181,
+   "calories": 540
+  },
+  {
+   "start": "2026-09-26T12:00:00.000Z",
+   "discipline": "other",
+   "garminType": "Walking",
+   "title": "",
+   "durationMs": 2460000,
+   "distanceKm": 3.1,
+   "avgHr": 95,
+   "maxHr": 110,
+   "calories": 150
+  },
+  {
+   "start": "2026-09-27T18:00:00.000Z",
+   "discipline": "strength",
+   "garminType": "Strength Training",
+   "title": "Силовая",
+   "durationMs": 2712000,
+   "distanceKm": 0,
+   "avgHr": null,
+   "maxHr": 120,
+   "calories": 210
+  },
+  {
+   "start": "2026-09-28T07:15:30.000Z",
+   "discipline": "bike",
+   "garminType": "Cycling",
+   "title": "Long \"easy\" ride",
+   "durationMs": 9067600,
+   "distanceKm": 72.4,
+   "avgHr": 131,
+   "maxHr": 158,
+   "calories": 1820
+  },
+  {
+   "start": "2026-09-29T19:10:00.000Z",
+   "discipline": "swim",
+   "garminType": "Pool Swim",
+   "title": "Бассейн",
+   "durationMs": 2535000,
+   "distanceKm": 1.5,
+   "avgHr": 128,
+   "maxHr": 149,
+   "calories": 310
+  },
+  {
+   "start": "2026-09-30T09:34:58.000Z",
+   "discipline": "run",
+   "garminType": "Running",
+   "title": "Saratov - База",
+   "durationMs": 1126000,
+   "distanceKm": 2.61,
+   "avgHr": 150,
+   "maxHr": 178,
+   "calories": 207
+  }
+ ]
+}
