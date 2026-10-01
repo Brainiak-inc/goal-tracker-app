@@ -5,34 +5,39 @@ struct DisciplinesView: View {
     @Environment(ActivityLibrary.self) private var library
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
     @State private var selection: Discipline?
+    @State private var selectedWeek: Int?
+    @State private var selectedActivity: Activity?
+    @State private var edge: Edge = .trailing
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
-                    Picker("Discipline", selection: discipline) {
+                    Picker("Discipline", selection: animatedSwitch(discipline, among: Discipline.triathlon, edge: $edge)) {
                         ForEach(Discipline.triathlon, id: \.self) { discipline in
                             Text(discipline.title).tag(discipline)
                         }
                     }
                     .pickerStyle(.segmented)
-
-                    let activities = library.activities(for: discipline.wrappedValue)
-                    if activities.isEmpty {
-                        emptyCard
-                    } else {
-                        totals(activities)
-                        formCard
-                        volumeCard
-                        workouts(activities)
+                    .onChange(of: discipline.wrappedValue) {
+                        selectedWeek = nil
                     }
+
+                    disciplineContent
+                        .id(discipline.wrappedValue)
+                        .switchTransition(edge: edge)
+                        .swipeToSwitch(discipline, among: Discipline.triathlon, edge: $edge)
                 }
                 .padding(.horizontal, 16)
                 .padding(.bottom, 24)
             }
+
             .background { ConsoleBackground() }
             .navigationTitle("Disciplines")
             .settingsToolbar()
+            .sheet(item: $selectedActivity) { activity in
+                ActivityDetailSheet(activity: activity)
+            }
         }
     }
 
@@ -42,6 +47,22 @@ struct DisciplinesView: View {
         } set: {
             selection = $0
         }
+    }
+
+    private var disciplineContent: some View {
+        let activities = library.activities(for: discipline.wrappedValue)
+        return VStack(alignment: .leading, spacing: 14) {
+            if activities.isEmpty {
+                emptyCard
+            } else {
+                totals(activities)
+                formCard
+                volumeCard
+                workouts(activities)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .contentShape(Rectangle())
     }
 
     private var emptyCard: some View {
@@ -126,24 +147,58 @@ struct DisciplinesView: View {
     @ViewBuilder
     private var volumeCard: some View {
         let weeks = library.weeklyVolume(discipline.wrappedValue)
-        if weeks.reduce(0, +) > 0, let last = weeks.last {
+        if weeks.reduce(0, +) > 0 {
+            let starts = weekStarts(count: weeks.count)
+            let shown = selectedWeek ?? weeks.count - 1
             VStack(alignment: .leading, spacing: 10) {
                 ViewThatFits(in: .horizontal) {
-                    HStack {
-                        Text("Volume · 10 weeks").consoleLabel()
+                    HStack(alignment: .firstTextBaseline) {
+                        volumeTitle(starts[shown])
                         Spacer()
-                        volumeValue(last, trend: Trend.volume(weeks))
+                        volumeValue(weeks[shown], trend: selectedWeek == nil ? Trend.volume(weeks) : nil)
                     }
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Volume · 10 weeks").consoleLabel()
-                        volumeValue(last, trend: Trend.volume(weeks))
+                        volumeTitle(starts[shown])
+                        volumeValue(weeks[shown], trend: selectedWeek == nil ? Trend.volume(weeks) : nil)
                     }
                 }
-                VolumeBars(weeks: weeks)
+                VolumeBars(
+                    weeks: weeks,
+                    labels: zip(starts, weeks).map { "\(weekRange($0)), \(Formatting.distance($1, discipline: discipline.wrappedValue, units: units))" },
+                    selection: $selectedWeek
+                )
+                Group {
+                    if selectedWeek == nil {
+                        Text("Tap a week to see its workouts.")
+                    } else {
+                        Text("Tap the week again to show all workouts.")
+                    }
+                }
+                .font(.caption)
+                .foregroundStyle(Palette.muted)
             }
             .padding(16)
             .consoleCard()
         }
+    }
+
+    private func volumeTitle(_ start: Date) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text("Volume · 10 weeks").consoleLabel()
+            Text(weekRange(start))
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(selectedWeek == nil ? Palette.text : Palette.fitness)
+        }
+    }
+
+    private func weekStarts(count: Int) -> [Date] {
+        WeeklyVolume.weekStarts(weeks: count, now: .now, calendar: library.calendar)
+    }
+
+    private func weekRange(_ start: Date) -> String {
+        let end = library.calendar.date(byAdding: .day, value: 6, to: start) ?? start
+        let format = Date.FormatStyle.dateTime.day().month(.wide)
+        return "\(start.formatted(format)) — \(end.formatted(format))"
     }
 
     private func volumeValue(_ last: Double, trend: Trend?) -> some View {
@@ -157,28 +212,65 @@ struct DisciplinesView: View {
         }
     }
 
-    private func workouts(_ activities: [Activity]) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
+    private func workouts(_ all: [Activity]) -> some View {
+        let activities = filtered(all)
+        return VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .firstTextBaseline) {
-                Text("All workouts")
-                    .font(.title3.bold())
-                    .foregroundStyle(Palette.text)
+                if selectedWeek == nil {
+                    Text("All workouts")
+                        .font(.title3.bold())
+                        .foregroundStyle(Palette.text)
+                } else {
+                    Text("Workouts this week")
+                        .font(.title3.bold())
+                        .foregroundStyle(Palette.text)
+                }
                 Spacer()
-                Text(activities.count, format: .number)
-                    .font(.system(.footnote, design: .monospaced))
-                    .foregroundStyle(Palette.muted)
+                if selectedWeek != nil {
+                    Button("Show all") {
+                        withAnimation(.snappy) { selectedWeek = nil }
+                    }
+                    .font(.subheadline)
+                } else {
+                    Text(activities.count, format: .number)
+                        .font(.system(.footnote, design: .monospaced))
+                        .foregroundStyle(Palette.muted)
+                }
             }
             .padding(.top, 6)
+            if activities.isEmpty {
+                Text("No workouts in this week.")
+                    .foregroundStyle(Palette.muted)
+                    .padding(16)
+                    .consoleCard(brackets: false)
+            }
             LazyVStack(spacing: 0) {
                 ForEach(Array(activities.reversed().enumerated()), id: \.element.identity) { index, activity in
                     if index > 0 {
                         Divider().overlay(Color.white.opacity(0.06))
                     }
-                    ActivityRow(activity: activity, detail: .pace, showsDiscipline: false)
+                    Button {
+                        selectedActivity = activity
+                    } label: {
+                        ActivityRow(activity: activity, detail: .pace, showsDiscipline: false)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
                 }
             }
             .consoleCard(brackets: false)
         }
+    }
+}
+
+private extension DisciplinesView {
+    func filtered(_ activities: [Activity]) -> [Activity] {
+        guard let selectedWeek else { return activities }
+        let starts = weekStarts(count: 10)
+        guard starts.indices.contains(selectedWeek) else { return activities }
+        let start = starts[selectedWeek]
+        let end = library.calendar.date(byAdding: .day, value: 7, to: start) ?? start
+        return activities.filter { $0.start >= start && $0.start < end }
     }
 }
 

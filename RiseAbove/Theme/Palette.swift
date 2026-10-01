@@ -10,6 +10,7 @@ enum Palette {
     static let form = Color(hex: 0x38BDF8)
     static let success = Color(hex: 0x34D399)
     static let warning = Color(hex: 0xFBBF24)
+    static let danger = Color(hex: 0xFF5C7A)
 
     static func level(_ percent: Int) -> Color {
         if percent >= 75 { return fitness }

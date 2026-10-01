@@ -1,0 +1,12 @@
+{
+  "app": "ironman-tracker",
+  "version": 1,
+  "exportedAt": "2026-10-01T10:00:00.000Z",
+  "activities_v1": "[{\"start\":\"2026-09-28T05:45:47.000Z\",\"discipline\":\"run\",\"garminType\":\"Running\",\"title\":\"Saratov - База\",\"durationMs\":2057000,\"distanceKm\":4.16,\"avgHr\":158,\"maxHr\":190,\"calories\":360},{\"start\":\"2026-09-29T15:10:00.000Z\",\"discipline\":\"swim\",\"garminType\":\"Pool Swim\",\"title\":\"Бассейн\",\"durationMs\":2535000,\"distanceKm\":1.5,\"avgHr\":128,\"maxHr\":149,\"calories\":310},{\"start\":\"2026-09-27T14:00:00.000Z\",\"discipline\":\"other\",\"garminType\":\"Strength Training\",\"title\":\"Силовая\",\"durationMs\":2712000,\"distanceKm\":null,\"avgHr\":null,\"maxHr\":120,\"calories\":210}]",
+  "settings_v1": "{\"defaultLthr\":174,\"lthrByDiscipline\":{\"bike\":160}}",
+  "lthr_manual_v1": "true",
+  "adherence_v1": "{\"general\":{\"2026-09-28\":{\"status\":\"full\",\"comment\":\"\"},\"2026-09-29\":{\"status\":\"missed\",\"comment\":\"Болел\"}},\"run\":{\"2026-09-28\":{\"status\":\"partial\",\"comment\":\"\"}}}",
+  "plan_v1": "[{\"id\":\"ad7a8cd6-31b8-417a-aa9f-9db19bd5af35\",\"name\":\"База · 2026\",\"startMonday\":\"2026-09-28\",\"weeks\":[{\"id\":\"e0c1d377-9686-481c-8d76-49d0fb3eb25d\",\"days\":[[{\"id\":\"ffc71e2c-a0a8-4acd-ab9a-03e18f8bdbdd\",\"discipline\":\"run\",\"title\":\"Лёгкий\",\"note\":\"\",\"distanceKm\":8}],[{\"id\":\"9a43d8a9-46b4-43b2-a4db-da83f5d57a61\",\"discipline\":\"swim\",\"title\":\"\",\"note\":\"10 × 100\",\"distanceKm\":1.5}],[],[],[],[],[]],\"done\":[true,false,false,false,false,false,false]},{\"id\":\"c38e55e6-3ed9-4bf5-9d1f-919d597c3656\",\"days\":[[],[],[],[],[],[],[{\"id\":\"6591a6d2-84c6-4779-a6eb-bfc433f25435\",\"discipline\":\"bike\",\"title\":\"Длинная\",\"note\":\"\"}]],\"done\":[false,false,false,false,false,false,false]}]},{\"id\":\"f81dbde2-4a43-42b4-90e6-f827f6302215\",\"name\":\"Без дат\",\"startMonday\":null,\"weeks\":[{\"id\":\"9528076c-aaad-4e88-89cb-8fe3ce193814\",\"days\":[[{\"id\":\"aeffbb7e-e8de-4f2c-a7da-00dccbadaacb\",\"discipline\":\"run\",\"title\":\"Старый формат\",\"note\":\"\"}],[],[],[],[],[],[]]}]}]",
+  "race_config_v1": "{\"distance\":\"full\",\"date\":\"2027-07-12\",\"targetSeconds\":46800,\"weeklyHours\":null,\"fromZero\":true}",
+  "deleted_v1": "[\"2026-09-20T06:00:00.000Z|Walking\"]"
+}

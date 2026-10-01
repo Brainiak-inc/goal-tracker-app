@@ -46,7 +46,7 @@ struct HealthDiagnosticsView: View {
                 .disabled(probe.status == .loading)
             }
         }
-        .healthDataAccessRequest(store: probe.store, readTypes: HealthProbe.readTypes, trigger: accessRequested) { result in
+        .healthDataAccessRequest(store: probe.store, readTypes: HealthWorkoutReader.readTypes, trigger: accessRequested) { result in
             Task { await probe.handleAccess(result) }
         }
         .onAppear {

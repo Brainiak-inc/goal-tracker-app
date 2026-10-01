@@ -12,17 +12,21 @@ struct ActivityRow: View {
     var showsDiscipline = true
 
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
-        ViewThatFits(in: .horizontal) {
-            HStack(spacing: 12) {
-                summary
-                Spacer(minLength: 8)
-                numbers(alignment: .trailing)
-            }
-            VStack(alignment: .leading, spacing: 6) {
-                summary
-                numbers(alignment: .leading)
+        Group {
+            if dynamicTypeSize.isAccessibilitySize {
+                VStack(alignment: .leading, spacing: 6) {
+                    summary
+                    numbers(alignment: .leading)
+                }
+            } else {
+                HStack(spacing: 12) {
+                    summary
+                    Spacer(minLength: 8)
+                    numbers(alignment: .trailing)
+                }
             }
         }
         .padding(.horizontal, 16)

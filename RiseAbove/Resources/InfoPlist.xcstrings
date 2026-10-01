@@ -8,7 +8,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Rise Above"
+            "value" : "Endure"
           }
         }
       }
@@ -32,13 +32,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Rise Above reads your workouts, distances, and heart rate from Health to calculate training load and race readiness."
+            "value" : "The app reads your workouts, distances, and heart rate from Health to calculate training load and race readiness."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Rise Above читает тренировки, дистанции и пульс из «Здоровья», чтобы считать тренировочную нагрузку и готовность к старту."
+            "value" : "Приложение читает тренировки, дистанции и пульс из «Здоровья», чтобы считать тренировочную нагрузку и готовность к старту."
           }
         }
       }

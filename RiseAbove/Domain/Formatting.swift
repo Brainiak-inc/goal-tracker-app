@@ -7,13 +7,17 @@ enum Formatting {
             let unit: UnitLength = units == .metric ? .meters : .yards
             let value = Measurement(value: meters, unit: UnitLength.meters).converted(to: unit).value.rounded()
             return Measurement(value: value, unit: unit).formatted(
-                .measurement(width: .abbreviated, usage: .asProvided, numberFormatStyle: .number.precision(.fractionLength(0)))
+                .measurement(width: width(units), usage: .asProvided, numberFormatStyle: .number.precision(.fractionLength(0)))
             )
         }
         let unit: UnitLength = units == .metric ? .kilometers : .miles
         return Measurement(value: meters, unit: UnitLength.meters).converted(to: unit).formatted(
-            .measurement(width: .abbreviated, usage: .asProvided, numberFormatStyle: .number.precision(.fractionLength(1)))
+            .measurement(width: width(units), usage: .asProvided, numberFormatStyle: .number.precision(.fractionLength(1)))
         )
+    }
+
+    private static func width(_ units: UnitSystem) -> Measurement<UnitLength>.FormatStyle.UnitWidth {
+        units == .metric ? .abbreviated : .wide
     }
 
     static func pace(distance meters: Double, duration: TimeInterval, discipline: Discipline, units: UnitSystem) -> String? {
@@ -23,7 +27,7 @@ enum Formatting {
             let speed = Measurement(value: meters / duration, unit: UnitSpeed.metersPerSecond)
                 .converted(to: units == .metric ? .kilometersPerHour : .milesPerHour)
             return speed.formatted(
-                .measurement(width: .abbreviated, usage: .asProvided, numberFormatStyle: .number.precision(.fractionLength(1)))
+                .measurement(width: units == .metric ? .abbreviated : .wide, usage: .asProvided, numberFormatStyle: .number.precision(.fractionLength(1)))
             )
         case .swim:
             let block = units == .metric ? 100.0 : 91.44

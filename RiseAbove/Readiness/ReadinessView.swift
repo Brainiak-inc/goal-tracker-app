@@ -84,7 +84,7 @@ private struct GoalInvitation: View {
             Button(action: action) {
                 Label("Set a race goal", systemImage: "scope")
             }
-            .buttonStyle(.glassProminent)
+            .buttonStyle(.consolePrimary)
         }
         .padding(18)
         .consoleCard()

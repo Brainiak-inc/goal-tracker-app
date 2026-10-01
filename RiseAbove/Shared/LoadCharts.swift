@@ -101,18 +101,31 @@ struct ChartLegendItem: View {
 
 struct VolumeBars: View {
     let weeks: [Double]
+    let labels: [String]
+    @Binding var selection: Int?
 
     var body: some View {
         let peak = weeks.max() ?? 0
+        let highlighted = selection ?? weeks.count - 1
         HStack(alignment: .bottom, spacing: 6) {
             ForEach(Array(weeks.enumerated()), id: \.offset) { index, value in
-                RoundedRectangle(cornerRadius: 3, style: .continuous)
-                    .fill(index == weeks.count - 1 ? Palette.fitness : Palette.fitness.opacity(0.32))
-                    .frame(height: peak > 0 ? max(4, 56 * value / peak) : 4)
-                    .frame(maxWidth: .infinity)
+                Button {
+                    withAnimation(.snappy) {
+                        selection = selection == index ? nil : index
+                    }
+                } label: {
+                    RoundedRectangle(cornerRadius: 3, style: .continuous)
+                        .fill(index == highlighted ? Palette.fitness : Palette.fitness.opacity(0.32))
+                        .frame(height: peak > 0 ? max(4, 56 * value / peak) : 4)
+                        .frame(maxWidth: .infinity, maxHeight: 60, alignment: .bottom)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel(labels.indices.contains(index) ? labels[index] : "")
+                .accessibilityAddTraits(selection == index ? .isSelected : [])
             }
         }
         .frame(height: 60, alignment: .bottom)
-        .accessibilityHidden(true)
+        .sensoryFeedback(.selection, trigger: selection)
     }
 }

@@ -75,3 +75,64 @@ extension View {
             .foregroundStyle(Palette.muted)
     }
 }
+
+struct ConsolePrimaryButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.body.weight(.semibold))
+            .foregroundStyle(Palette.fitness)
+            .padding(.horizontal, 18)
+            .padding(.vertical, 11)
+            .glassEffect(.regular.interactive(), in: Capsule())
+            .overlay {
+                Capsule().strokeBorder(Palette.fitness.opacity(0.7), lineWidth: 1)
+            }
+            .scaleEffect(configuration.isPressed ? 0.97 : 1)
+            .animation(.snappy, value: configuration.isPressed)
+    }
+}
+
+struct ConsoleSecondaryButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.body)
+            .foregroundStyle(Palette.text)
+            .padding(.horizontal, 18)
+            .padding(.vertical, 11)
+            .glassEffect(.regular.interactive(), in: Capsule())
+            .scaleEffect(configuration.isPressed ? 0.97 : 1)
+            .animation(.snappy, value: configuration.isPressed)
+    }
+}
+
+struct ConsoleChipButtonStyle: ButtonStyle {
+    let isActive: Bool
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.subheadline.weight(.semibold))
+            .foregroundStyle(isActive ? Palette.fitness : Palette.text)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 9)
+            .glassEffect(.regular.interactive(), in: Capsule())
+            .overlay {
+                if isActive {
+                    Capsule().strokeBorder(Palette.fitness.opacity(0.6), lineWidth: 1)
+                }
+            }
+            .scaleEffect(configuration.isPressed ? 0.97 : 1)
+            .animation(.snappy, value: configuration.isPressed)
+    }
+}
+
+extension ButtonStyle where Self == ConsolePrimaryButtonStyle {
+    static var consolePrimary: ConsolePrimaryButtonStyle { ConsolePrimaryButtonStyle() }
+}
+
+extension ButtonStyle where Self == ConsoleSecondaryButtonStyle {
+    static var consoleSecondary: ConsoleSecondaryButtonStyle { ConsoleSecondaryButtonStyle() }
+}
+
+extension ButtonStyle where Self == ConsoleChipButtonStyle {
+    static func consoleChip(isActive: Bool) -> ConsoleChipButtonStyle { ConsoleChipButtonStyle(isActive: isActive) }
+}

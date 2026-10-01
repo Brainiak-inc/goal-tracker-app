@@ -22,11 +22,23 @@ public struct PlanWeek: Codable, Hashable, Identifiable, Sendable {
     public var id: UUID
     public var days: [[PlannedWorkout]]
     public var done: [Bool]
+    public var dismissed: [Bool]
 
-    public init(id: UUID = UUID(), days: [[PlannedWorkout]]? = nil, done: [Bool]? = nil) {
+    public init(id: UUID = UUID(), days: [[PlannedWorkout]]? = nil, done: [Bool]? = nil, dismissed: [Bool]? = nil) {
         self.id = id
         self.days = days ?? Array(repeating: [], count: Self.dayCount)
         self.done = done ?? Array(repeating: false, count: Self.dayCount)
+        self.dismissed = dismissed ?? Array(repeating: false, count: Self.dayCount)
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.init(
+            id: try container.decode(UUID.self, forKey: .id),
+            days: try container.decode([[PlannedWorkout]].self, forKey: .days),
+            done: try container.decode([Bool].self, forKey: .done),
+            dismissed: try container.decodeIfPresent([Bool].self, forKey: .dismissed)
+        )
     }
 
     public var progress: WeekProgress {

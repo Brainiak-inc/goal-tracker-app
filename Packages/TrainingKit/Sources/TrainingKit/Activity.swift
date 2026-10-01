@@ -10,6 +10,7 @@ public struct Activity: Codable, Hashable, Sendable {
     public var averageHeartRate: Double?
     public var maxHeartRate: Double?
     public var calories: Double?
+    public var externalID: String?
 
     public init(
         start: Date,
@@ -20,7 +21,8 @@ public struct Activity: Codable, Hashable, Sendable {
         distance: Double? = nil,
         averageHeartRate: Double? = nil,
         maxHeartRate: Double? = nil,
-        calories: Double? = nil
+        calories: Double? = nil,
+        externalID: String? = nil
     ) {
         self.start = start
         self.discipline = discipline
@@ -31,6 +33,7 @@ public struct Activity: Codable, Hashable, Sendable {
         self.averageHeartRate = averageHeartRate
         self.maxHeartRate = maxHeartRate
         self.calories = calories
+        self.externalID = externalID
     }
 
     public var end: Date {

@@ -1,12 +1,42 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@ %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Резервная копия: %@"
+          }
+        }
+      }
+    },
     "%@ of %@" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ из %2$@"
+          }
+        }
+      }
+    },
+    "%@ of %@ · %lld%%" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ из %2$@ · %3$lld%%"
           }
         }
       }
@@ -67,6 +97,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ · %2$@"
+          }
+        }
+      }
+    },
+    "%@, not in the plan" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, вне плана"
           }
         }
       }
@@ -163,6 +203,16 @@
         }
       }
     },
+    "%lld kcal" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld ккал"
+          }
+        }
+      }
+    },
     "%lld minutes" : {
       "localizations" : {
         "en" : {
@@ -225,12 +275,126 @@
         }
       }
     },
+    "%lld weeks" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld week"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld weeks"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld неделя"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld недели"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld недель"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld недели"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld workouts" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld workout"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld workouts"
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld тренировка"
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld тренировки"
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld тренировок"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld тренировки"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld%%" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld%%"
+          }
+        }
+      }
+    },
+    "0" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0"
           }
         }
       }
@@ -255,6 +419,36 @@
         }
       }
     },
+    "A day in a dated plan is marked done when workouts from Health or an import cover at least 80% of the planned distance. If you untick a day yourself, it stays unticked." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "День в плане с датами отмечается выполненным, если тренировки из Health или импорта покрывают не меньше 80% плановой дистанции. Если снять отметку вручную, приложение её не вернёт."
+          }
+        }
+      }
+    },
+    "A deleted workout won't come back with the next import or sync." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалённая тренировка не вернётся при следующем импорте или синхронизации."
+          }
+        }
+      }
+    },
+    "A file saved from the web version (Menu → Export data) or from this app." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл, сохранённый в веб-версии (Меню → Экспорт данных) или в этом приложении."
+          }
+        }
+      }
+    },
     "A safe weekly increase towards the target volume." : {
       "localizations" : {
         "ru" : {
@@ -271,6 +465,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Оценка-ориентир по объёму, не медицинский расчёт."
+          }
+        }
+      }
+    },
+    "Add" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить"
+          }
+        }
+      }
+    },
+    "Add a workout on %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить тренировку: %@"
+          }
+        }
+      }
+    },
+    "Add week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить неделю"
           }
         }
       }
@@ -295,12 +519,52 @@
         }
       }
     },
+    "Adherence calendar" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Календарь выполнения"
+          }
+        }
+      }
+    },
+    "After every change the app updates “%@” in the folder you choose. Choose a folder in iCloud Drive to restore your data after reinstalling the app or on a new iPhone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "После каждого изменения приложение обновляет файл «%@» в выбранной папке. Выбери папку в iCloud Drive, чтобы восстановить данные после переустановки приложения или на новом iPhone."
+          }
+        }
+      }
+    },
     "Ahead of schedule" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Успеваешь с запасом"
+          }
+        }
+      }
+    },
+    "All" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все"
+          }
+        }
+      }
+    },
+    "All disciplines" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Все дисциплины"
           }
         }
       }
@@ -325,12 +589,82 @@
         }
       }
     },
-    "Apple Health check" : {
+    "Apple Health" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Проверка Apple Health"
+            "value" : "Apple Health"
+          }
+        }
+      }
+    },
+    "Apple Health is connected, but there are no workouts in it yet. Check that Garmin Connect shares workouts with Health, or import a CSV export." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Health подключено, но тренировок в нём пока нет. Проверь, что Garmin Connect передаёт тренировки в «Здоровье», или импортируй CSV-выгрузку."
+          }
+        }
+      }
+    },
+    "Automatic" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматически"
+          }
+        }
+      }
+    },
+    "Automatic backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Автоматическая копия"
+          }
+        }
+      }
+    },
+    "Average heart rate" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средний пульс"
+          }
+        }
+      }
+    },
+    "Backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Резервная копия"
+          }
+        }
+      }
+    },
+    "Backup imported" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Резервная копия импортирована"
+          }
+        }
+      }
+    },
+    "Base season" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Базовый сезон"
           }
         }
       }
@@ -407,12 +741,142 @@
         }
       }
     },
+    "CSV, backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSV, резервная копия"
+          }
+        }
+      }
+    },
+    "Calories" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Калории"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "Change folder" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Изменить папку"
+          }
+        }
+      }
+    },
+    "Check that Health is available on this iPhone and try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверь, что «Здоровье» доступно на этом iPhone, и попробуй ещё раз."
+          }
+        }
+      }
+    },
     "Choose a CSV file exported from Garmin Connect: Activities → Export CSV." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Выбери CSV-файл, выгруженный из Garmin Connect: Активности → Экспорт CSV."
+          }
+        }
+      }
+    },
+    "Choose the JSON file saved from the web version: Menu → Export data." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбери JSON-файл, сохранённый в веб-версии: Меню → Экспорт данных."
+          }
+        }
+      }
+    },
+    "Comment" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Комментарий"
+          }
+        }
+      }
+    },
+    "Connect Apple Health" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключить Apple Health"
+          }
+        }
+      }
+    },
+    "Connect Apple Health to get workouts from Garmin Connect and other apps automatically, or import a CSV export." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключи Apple Health, чтобы тренировки из Garmin Connect и других приложений появлялись автоматически, или импортируй CSV-выгрузку."
+          }
+        }
+      }
+    },
+    "Connected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключено"
+          }
+        }
+      }
+    },
+    "Couldn't connect to Health" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось подключиться к «Здоровью»"
+          }
+        }
+      }
+    },
+    "Couldn't get access to this folder." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось получить доступ к этой папке."
+          }
+        }
+      }
+    },
+    "Couldn't read the backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось прочитать резервную копию"
           }
         }
       }
@@ -427,6 +891,36 @@
         }
       }
     },
+    "Create a training plan" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создай план тренировок"
+          }
+        }
+      }
+    },
+    "Create plan" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создать план"
+          }
+        }
+      }
+    },
+    "Current value" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущее значение"
+          }
+        }
+      }
+    },
     "Data" : {
       "localizations" : {
         "ru" : {
@@ -437,12 +931,32 @@
         }
       }
     },
+    "Date" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дата"
+          }
+        }
+      }
+    },
     "Day" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "День"
+          }
+        }
+      }
+    },
+    "Day marks and comments" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметки по дням и комментарии"
           }
         }
       }
@@ -487,6 +1001,46 @@
         }
       }
     },
+    "Delete plan?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить план?"
+          }
+        }
+      }
+    },
+    "Delete this workout?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить эту тренировку?"
+          }
+        }
+      }
+    },
+    "Delete workout" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить тренировку"
+          }
+        }
+      }
+    },
+    "Details · optional" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Детали · необязательно"
+          }
+        }
+      }
+    },
     "Discipline" : {
       "localizations" : {
         "ru" : {
@@ -507,12 +1061,42 @@
         }
       }
     },
+    "Disconnect" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отключить"
+          }
+        }
+      }
+    },
     "Distance" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Дистанция"
+          }
+        }
+      }
+    },
+    "Distance, date, and target time" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дистанция, дата и целевое время"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выполнено"
           }
         }
       }
@@ -533,6 +1117,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Изменить цель"
+          }
+        }
+      }
+    },
+    "Edit workout" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировка"
+          }
+        }
+      }
+    },
+    "Enter a number, for example 10 or 7.5" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Введи число, например 10 или 7,5"
           }
         }
       }
@@ -573,6 +1177,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Усталость (ATL)"
+          }
+        }
+      }
+    },
+    "Filter" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фильтр"
           }
         }
       }
@@ -657,6 +1271,26 @@
         }
       }
     },
+    "Fix the discipline if the import guessed it wrong. The change survives re-imports." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Исправь дисциплину, если импорт определил её неверно. Правка сохранится при повторном импорте."
+          }
+        }
+      }
+    },
+    "Folder" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Папка"
+          }
+        }
+      }
+    },
     "Form" : {
       "localizations" : {
         "ru" : {
@@ -687,12 +1321,32 @@
         }
       }
     },
+    "From Health and CSV imports, with heart rate" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Из Health и импорта CSV, вместе с пульсом"
+          }
+        }
+      }
+    },
     "Full distance" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Полная дистанция"
+          }
+        }
+      }
+    },
+    "General" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общая"
           }
         }
       }
@@ -713,6 +1367,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Проверка Health"
+          }
+        }
+      }
+    },
+    "Health data check" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Проверка данных Health"
           }
         }
       }
@@ -827,12 +1491,12 @@
         }
       }
     },
-    "Import a CSV export from Garmin Connect or check what Apple Health shares. Analytics appear as soon as there are workouts." : {
+    "Import backup" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Импортируй CSV-выгрузку из Garmin Connect или проверь, что передаёт Apple Health. Аналитика появится, как только будут тренировки."
+            "value" : "Импорт резервной копии"
           }
         }
       }
@@ -847,6 +1511,16 @@
         }
       }
     },
+    "Import from file" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Импорт из файла"
+          }
+        }
+      }
+    },
     "Import workouts to see how fitness, fatigue, and form change." : {
       "localizations" : {
         "ru" : {
@@ -857,12 +1531,12 @@
         }
       }
     },
-    "Imported workouts" : {
+    "Import · %@" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Импортировано тренировок"
+            "value" : "Импорт · %@"
           }
         }
       }
@@ -877,12 +1551,52 @@
         }
       }
     },
+    "In Garmin Connect: Activities → Export CSV." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В Garmin Connect: Активности → Экспорт CSV."
+          }
+        }
+      }
+    },
     "Language" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Язык"
+          }
+        }
+      }
+    },
+    "Last backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Последняя копия"
+          }
+        }
+      }
+    },
+    "Later" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Позже"
+          }
+        }
+      }
+    },
+    "Leave empty if the workout is planned by time." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оставь пустым, если тренировка планируется по времени."
           }
         }
       }
@@ -917,6 +1631,56 @@
         }
       }
     },
+    "Manual" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вручную"
+          }
+        }
+      }
+    },
+    "Manual and automatic backups contain the same data. The file is compatible with the web version." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ручная и автоматическая копии содержат одинаковые данные. Файл совместим с веб-версией."
+          }
+        }
+      }
+    },
+    "Mark as done" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отметить выполненной"
+          }
+        }
+      }
+    },
+    "Mark as not done" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Снять отметку"
+          }
+        }
+      }
+    },
+    "Max heart rate" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Максимальный пульс"
+          }
+        }
+      }
+    },
     "Metric" : {
       "localizations" : {
         "ru" : {
@@ -937,12 +1701,122 @@
         }
       }
     },
+    "Missed" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пропущено"
+          }
+        }
+      }
+    },
+    "Mode" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Режим"
+          }
+        }
+      }
+    },
+    "Name" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название"
+          }
+        }
+      }
+    },
+    "Never" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не сохранялась"
+          }
+        }
+      }
+    },
+    "New plan" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новый план"
+          }
+        }
+      }
+    },
+    "New plans: %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новых планов: %lld"
+          }
+        }
+      }
+    },
+    "New workout" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новая тренировка"
+          }
+        }
+      }
+    },
+    "New workouts arrive automatically, even when the app is closed. Disconnecting keeps the workouts already synced." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новые тренировки приходят автоматически, даже когда приложение закрыто. После отключения уже загруженные тренировки останутся."
+          }
+        }
+      }
+    },
+    "New workouts: %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новых тренировок: %lld"
+          }
+        }
+      }
+    },
+    "Next year" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следующий год"
+          }
+        }
+      }
+    },
     "No distance" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет дистанции"
+          }
+        }
+      }
+    },
+    "No mark" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Без отметки"
           }
         }
       }
@@ -967,6 +1841,26 @@
         }
       }
     },
+    "No workouts in this week." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "На этой неделе тренировок нет."
+          }
+        }
+      }
+    },
+    "No workouts match this filter." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет тренировок с таким фильтром."
+          }
+        }
+      }
+    },
     "No workouts yet" : {
       "localizations" : {
         "ru" : {
@@ -983,6 +1877,36 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нет"
+          }
+        }
+      }
+    },
+    "Not connected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не подключено"
+          }
+        }
+      }
+    },
+    "Not synced yet" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ещё не синхронизировано"
+          }
+        }
+      }
+    },
+    "Note" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заметка"
           }
         }
       }
@@ -1037,6 +1961,16 @@
         }
       }
     },
+    "Pace" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темп"
+          }
+        }
+      }
+    },
     "Pace for the target time" : {
       "localizations" : {
         "ru" : {
@@ -1047,12 +1981,32 @@
         }
       }
     },
+    "Partly done" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Частично"
+          }
+        }
+      }
+    },
     "Period" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Период"
+          }
+        }
+      }
+    },
+    "Pick a backup file. Its data is merged with what's already in the app, without duplicates." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбери файл резервной копии. Данные из него объединятся с тем, что уже есть в приложении, без дублей."
           }
         }
       }
@@ -1077,12 +2031,52 @@
         }
       }
     },
+    "Plan and actual" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "План и факт"
+          }
+        }
+      }
+    },
+    "Plan workouts by week and tick them off. With a dated plan you also see planned against actual volume once workouts are imported." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Планируй тренировки по неделям и отмечай выполненные. В плане с датами ты также увидишь план и факт по объёму, когда тренировки будут импортированы."
+          }
+        }
+      }
+    },
+    "Planned volume" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Объём по плану"
+          }
+        }
+      }
+    },
     "Power" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Мощность"
+          }
+        }
+      }
+    },
+    "Previous year" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Предыдущий год"
           }
         }
       }
@@ -1157,12 +2151,142 @@
         }
       }
     },
+    "Remove mark" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Убрать отметку"
+          }
+        }
+      }
+    },
+    "Remove week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить неделю"
+          }
+        }
+      }
+    },
+    "Rename" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переименовать"
+          }
+        }
+      }
+    },
+    "Rename plan" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Переименовать план"
+          }
+        }
+      }
+    },
+    "Rest" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отдых"
+          }
+        }
+      }
+    },
+    "Restore" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восстановление"
+          }
+        }
+      }
+    },
+    "Restore from backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Восстановить из резервной копии"
+          }
+        }
+      }
+    },
     "Run" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Бег"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить"
+          }
+        }
+      }
+    },
+    "Save a backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохрани резервную копию"
+          }
+        }
+      }
+    },
+    "Save backup now" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить копию сейчас"
+          }
+        }
+      }
+    },
+    "Save the file to Files, for example to iCloud Drive, or send it to your Mac." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохрани файл в «Файлы», например в iCloud Drive, или отправь на Mac."
+          }
+        }
+      }
+    },
+    "Saving…" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранение…"
+          }
+        }
+      }
+    },
+    "Send backup" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправить копию"
           }
         }
       }
@@ -1187,6 +2311,16 @@
         }
       }
     },
+    "Show all" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показать все"
+          }
+        }
+      }
+    },
     "Source" : {
       "localizations" : {
         "ru" : {
@@ -1207,12 +2341,42 @@
         }
       }
     },
+    "Speed" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скорость"
+          }
+        }
+      }
+    },
+    "Start" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начало"
+          }
+        }
+      }
+    },
     "Starting from scratch" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Начинаю с нуля"
+          }
+        }
+      }
+    },
+    "Status" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статус"
           }
         }
       }
@@ -1247,12 +2411,72 @@
         }
       }
     },
+    "Sync failed" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ошибка синхронизации"
+          }
+        }
+      }
+    },
+    "Sync now" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синхронизировать сейчас"
+          }
+        }
+      }
+    },
+    "Synced %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синхронизировано %@"
+          }
+        }
+      }
+    },
+    "Syncing…" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синхронизация…"
+          }
+        }
+      }
+    },
     "TSS over 7 days" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "TSS за 7 дней"
+          }
+        }
+      }
+    },
+    "Tap a week to see its workouts." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажми на неделю, чтобы увидеть её тренировки."
+          }
+        }
+      }
+    },
+    "Tap the week again to show all workouts." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажми на неделю ещё раз, чтобы показать все тренировки."
           }
         }
       }
@@ -1267,12 +2491,52 @@
         }
       }
     },
+    "The adherence calendar was carried over." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Календарь выполнения перенесён."
+          }
+        }
+      }
+    },
     "The cutoff is 17 hours for the full distance and 8 hours 30 minutes for the half. A faster goal raises the target volumes." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Лимит времени — 17 часов на полной дистанции и 8 часов 30 минут на половине. Чем быстрее цель, тем выше нужные объёмы."
+          }
+        }
+      }
+    },
+    "The highest average heart rate among runs of 20 minutes or longer. It updates with every import or sync." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Самый высокий средний пульс среди пробежек от 20 минут. Обновляется при каждом импорте и синхронизации."
+          }
+        }
+      }
+    },
+    "The race goal was carried over." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Цель старта перенесена."
+          }
+        }
+      }
+    },
+    "There are no runs with heart rate yet, so the default of 170 bpm is used." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пробежек с пульсом пока нет, поэтому используется значение по умолчанию — 170 уд/мин."
           }
         }
       }
@@ -1297,16 +2561,6 @@
         }
       }
     },
-    "This section is being built. Overview and data import already work." : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Раздел в разработке. Обзор и импорт данных уже работают."
-          }
-        }
-      }
-    },
     "This week" : {
       "localizations" : {
         "ru" : {
@@ -1327,12 +2581,62 @@
         }
       }
     },
+    "Threshold heart rate is the highest heart rate you can hold for about an hour of hard effort. Training load (TSS) compares every workout with it: one hour at threshold equals 100." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пороговый пульс — самый высокий пульс, который ты можешь держать около часа в полную силу. Нагрузка (TSS) сравнивает каждую тренировку с ним: час на пороге — это 100."
+          }
+        }
+      }
+    },
+    "Threshold heart rate, units, and plan ticking" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пороговый пульс, единицы измерения и автоотметка плана"
+          }
+        }
+      }
+    },
+    "Tick off days from actual workouts" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмечать дни по факту тренировок"
+          }
+        }
+      }
+    },
+    "Tie to dates" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Привязать к датам"
+          }
+        }
+      }
+    },
     "Time" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Время"
+          }
+        }
+      }
+    },
+    "Title, for example tempo run" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Название, например темповый бег"
           }
         }
       }
@@ -1347,12 +2651,72 @@
         }
       }
     },
+    "Track" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дорожка"
+          }
+        }
+      }
+    },
+    "Training" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировки"
+          }
+        }
+      }
+    },
+    "Training load is calculated from heart rate relative to this threshold." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нагрузка считается по пульсу относительно этого порога."
+          }
+        }
+      }
+    },
+    "Training plan" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "План тренировок"
+          }
+        }
+      }
+    },
+    "Training plans" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Планы тренировок"
+          }
+        }
+      }
+    },
     "Units" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Единицы измерения"
+          }
+        }
+      }
+    },
+    "Use a value from a lab test or a 30-minute time trial: your average heart rate over the last 20 minutes." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Возьми значение из лабораторного теста или 30-минутной контрольной тренировки: средний пульс за последние 20 минут."
           }
         }
       }
@@ -1407,6 +2771,76 @@
         }
       }
     },
+    "Week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неделя"
+          }
+        }
+      }
+    },
+    "Week %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неделя %lld"
+          }
+        }
+      }
+    },
+    "Week %lld of %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Неделя %1$lld из %2$lld"
+          }
+        }
+      }
+    },
+    "Weeks are numbered without dates. Plan and actual volume are compared only for dated plans." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недели нумеруются без дат. План и факт сравниваются только в планах с датами."
+          }
+        }
+      }
+    },
+    "Weeks start on Monday, %@." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недели начинаются с понедельника, %@."
+          }
+        }
+      }
+    },
+    "Weeks, workouts, notes, and ticks" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недели, тренировки, заметки и отметки"
+          }
+        }
+      }
+    },
+    "What a backup contains" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что входит в копию"
+          }
+        }
+      }
+    },
     "With heart rate" : {
       "localizations" : {
         "ru" : {
@@ -1427,6 +2861,36 @@
         }
       }
     },
+    "Workouts from Garmin Connect, Strava, and other apps that write to Health will appear automatically." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировки из Garmin Connect, Strava и других приложений, которые пишут в «Здоровье», будут появляться автоматически."
+          }
+        }
+      }
+    },
+    "Workouts in the app" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировок в приложении"
+          }
+        }
+      }
+    },
+    "Workouts this week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренировки за неделю"
+          }
+        }
+      }
+    },
     "Year" : {
       "localizations" : {
         "ru" : {
@@ -1437,12 +2901,42 @@
         }
       }
     },
+    "Your plans live only on this iPhone. Save a copy to Files or turn on automatic backup in Settings." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Твои планы хранятся только на этом iPhone. Сохрани копию в «Файлы» или включи автоматическую копию в настройках."
+          }
+        }
+      }
+    },
     "about %@ years" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "около %@ года"
+          }
+        }
+      }
+    },
+    "actual %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "факт %@"
+          }
+        }
+      }
+    },
+    "actual %@ · %lld%%" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "факт %1$@ · %2$lld%%"
           }
         }
       }
@@ -1647,6 +3141,16 @@
         }
       }
     },
+    "today" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "сегодня"
+          }
+        }
+      }
+    },
     "trend after a week of data" : {
       "localizations" : {
         "ru" : {
@@ -1663,6 +3167,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ярды, темп на 100 ярдов"
+          }
+        }
+      }
+    },
+    "“%@” and all its weeks will be deleted." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "План «%@» и все его недели будут удалены."
           }
         }
       }

@@ -24,9 +24,11 @@ struct WorkoutProbe: Identifiable, Hashable, Sendable {
     let sampleDistance: Double?
     let workoutHeartRate: Double?
     let sampleHeartRate: Double?
+    let maxHeartRate: Double?
     let heartRateSampleCount: Int
     let heartRateSources: [String]
     let averagePower: Double?
+    let calories: Double?
 
     var distance: Double? {
         workoutDistance ?? sampleDistance
@@ -53,10 +55,17 @@ struct WorkoutProbe: Identifiable, Hashable, Sendable {
             start: start,
             discipline: discipline,
             sourceType: activityType,
-            title: activityType,
+            title: "",
             duration: duration,
             distance: distance,
-            averageHeartRate: averageHeartRate
+            averageHeartRate: averageHeartRate,
+            maxHeartRate: maxHeartRate,
+            calories: calories,
+            externalID: Self.externalID(id)
         )
+    }
+
+    static func externalID(_ id: UUID) -> String {
+        "health:\(id.uuidString)"
     }
 }

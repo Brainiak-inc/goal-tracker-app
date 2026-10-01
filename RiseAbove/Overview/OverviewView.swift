@@ -30,22 +30,35 @@ struct OverviewView: View {
 }
 
 private struct EmptyLibraryCard: View {
+    @Environment(HealthSync.self) private var healthSync
+
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("Add your training data")
                 .font(.title3.bold())
                 .foregroundStyle(Palette.text)
-            Text("Import a CSV export from Garmin Connect or check what Apple Health shares. Analytics appear as soon as there are workouts.")
-                .foregroundStyle(Palette.muted)
-                .fixedSize(horizontal: false, vertical: true)
-            GarminImportButton()
-                .buttonStyle(.glassProminent)
-            NavigationLink {
-                HealthDiagnosticsView()
-            } label: {
-                Label("Apple Health check", systemImage: "heart.text.square")
+            if healthSync.isEnabled {
+                Text("Apple Health is connected, but there are no workouts in it yet. Check that Garmin Connect shares workouts with Health, or import a CSV export.")
+                    .foregroundStyle(Palette.muted)
+                    .fixedSize(horizontal: false, vertical: true)
+                HealthSyncStatus()
+                    .font(.footnote)
+                    .foregroundStyle(Palette.muted)
+                GarminImportButton()
+                    .buttonStyle(.consoleSecondary)
+            } else {
+                Text("Connect Apple Health to get workouts from Garmin Connect and other apps automatically, or import a CSV export.")
+                    .foregroundStyle(Palette.muted)
+                    .fixedSize(horizontal: false, vertical: true)
+                if healthSync.isAvailable {
+                    HealthConnectButton()
+                        .buttonStyle(.consolePrimary)
+                }
+                GarminImportButton()
+                    .buttonStyle(.consoleSecondary)
             }
-            .buttonStyle(.glass)
+            WebBackupImportButton(title: "Restore from backup")
+                .buttonStyle(.consoleSecondary)
         }
         .padding(18)
         .consoleCard()
@@ -215,22 +228,60 @@ private struct VolumeCard: View {
 
 private struct RecentActivities: View {
     @Environment(ActivityLibrary.self) private var library
+    @Environment(HealthSync.self) private var healthSync
+    @State private var selected: Activity?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Recent")
-                .font(.title3.bold())
-                .foregroundStyle(Palette.text)
-                .padding(.top, 6)
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(alignment: .firstTextBaseline) {
+                    Text("Recent")
+                        .font(.title3.bold())
+                        .foregroundStyle(Palette.text)
+                    Spacer()
+                    NavigationLink {
+                        AllActivitiesView()
+                    } label: {
+                        HStack(spacing: 4) {
+                            Text("All")
+                            Image(systemName: "chevron.right")
+                                .font(.footnote.weight(.semibold))
+                        }
+                    }
+                }
+                syncStatus
+            }
+            .padding(.top, 6)
             VStack(spacing: 0) {
                 ForEach(Array(library.recent.prefix(8).enumerated()), id: \.element.identity) { index, activity in
                     if index > 0 {
                         Divider().overlay(Color.white.opacity(0.06))
                     }
-                    ActivityRow(activity: activity, detail: .stress(library.stress(for: activity)))
+                    Button {
+                        selected = activity
+                    } label: {
+                        ActivityRow(activity: activity, detail: .stress(library.stress(for: activity)))
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
                 }
             }
             .consoleCard(brackets: false)
+        }
+        .sheet(item: $selected) { activity in
+            ActivityDetailSheet(activity: activity)
+        }
+    }
+
+    @ViewBuilder
+    private var syncStatus: some View {
+        if healthSync.isEnabled {
+            HStack(spacing: 4) {
+                Text(verbatim: "Health ·")
+                HealthSyncStatus()
+            }
+            .font(.footnote)
+            .foregroundStyle(Palette.muted)
         }
     }
 }

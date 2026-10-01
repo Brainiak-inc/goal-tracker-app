@@ -1,6 +1,11 @@
 import Foundation
 
 public enum WeeklyVolume {
+    public static func weekStarts(weeks: Int, now: Date, calendar: Calendar) -> [Date] {
+        let lastComplete = calendar.adding(days: -7, to: calendar.monday(of: now))
+        return (0..<weeks).map { calendar.adding(days: -7 * (weeks - 1 - $0), to: lastComplete) }
+    }
+
     public static func series(
         _ activities: [Activity],
         discipline: Discipline,

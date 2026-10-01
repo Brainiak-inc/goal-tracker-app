@@ -20,12 +20,13 @@ struct FormView: View {
 
     @Environment(ActivityLibrary.self) private var library
     @State private var period: Period = .sixWeeks
+    @State private var edge: Edge = .trailing
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 14) {
                 if let fitness = library.fitness {
-                    Picker("Period", selection: $period) {
+                    Picker("Period", selection: animatedSwitch($period, among: Period.allCases, edge: $edge)) {
                         ForEach(Period.allCases) { period in
                             Text(period.title).tag(period)
                         }
@@ -33,6 +34,9 @@ struct FormView: View {
                     .pickerStyle(.segmented)
 
                     chartCard
+                        .id(period)
+                        .switchTransition(edge: edge)
+                        .swipeToSwitch($period, among: Period.allCases, edge: $edge)
                     tiles(fitness)
                     if let trend = library.fitnessTrend {
                         Text(explanation(trend.delta))
