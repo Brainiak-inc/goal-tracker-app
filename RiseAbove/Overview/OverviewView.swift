@@ -254,7 +254,7 @@ private struct VolumeCard: View {
     }
 
     private func previous(_ row: (discipline: Discipline, current: Double, previous: Double)) -> some View {
-        Text("last week: \(Formatting.distance(row.previous, discipline: row.discipline, units: units))")
+        Text("previous week: \(Formatting.distance(row.previous, discipline: row.discipline, units: units))")
             .font(.caption)
             .foregroundStyle(Palette.muted)
     }

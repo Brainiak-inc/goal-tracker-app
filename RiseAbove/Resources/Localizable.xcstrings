@@ -3161,16 +3161,6 @@
         }
       }
     },
-    "last week: %@" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "прошлая неделя: %@"
-          }
-        }
-      }
-    },
     "longest" : {
       "localizations" : {
         "ru" : {
@@ -3287,6 +3277,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "в неделю"
+          }
+        }
+      }
+    },
+    "previous week: %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "предыдущая неделя: %@"
           }
         }
       }
