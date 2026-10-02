@@ -2,6 +2,8 @@ import HealthKitUI
 import SwiftUI
 
 struct HealthConnectButton: View {
+    var expands = false
+
     @Environment(HealthSync.self) private var healthSync
     @State private var requested = false
     @State private var failed = false
@@ -11,6 +13,7 @@ struct HealthConnectButton: View {
             requested.toggle()
         } label: {
             Label("Connect Apple Health", systemImage: "heart.text.square")
+                .frame(maxWidth: expands ? .infinity : nil)
         }
         .healthDataAccessRequest(store: healthSync.store, readTypes: HealthWorkoutReader.readTypes, trigger: requested) { result in
             Task { @MainActor in

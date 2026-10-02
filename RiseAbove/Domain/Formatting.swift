@@ -54,6 +54,12 @@ enum Formatting {
         return "\(minutes / 60):" + String(format: "%02d", minutes % 60)
     }
 
+    static func raceTime(_ seconds: TimeInterval) -> String {
+        let total = Int(seconds.rounded())
+        guard total >= 3600 else { return minutesAndSeconds(seconds) }
+        return "\(total / 3600):" + String(format: "%02d:%02d", total % 3600 / 60, total % 60)
+    }
+
     static func signed(_ value: Double) -> String {
         value.formatted(.number.precision(.fractionLength(1)).sign(strategy: .always()))
     }

@@ -9,6 +9,7 @@ struct AdherenceCalendarView: View {
 
     @Environment(AdherenceStore.self) private var store
     @Environment(\.calendar) private var calendar
+    @AppStorage(SportProfile.storageKey) private var profile: SportProfile = .triathlon
     @State private var track: AdherenceTrack = .general
     @State private var year = Calendar.current.component(.year, from: .now)
     @State private var edited: EditedDay?
@@ -18,12 +19,14 @@ struct AdherenceCalendarView: View {
         ScrollViewReader { proxy in
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
-                    Picker("Track", selection: animatedSwitch($track, among: AdherenceTrack.allCases, edge: $edge)) {
-                        ForEach(AdherenceTrack.allCases, id: \.self) { track in
-                            Text(track.title).tag(track)
+                    if profile.adherenceTracks.count > 1 {
+                        Picker("Track", selection: animatedSwitch($track, among: profile.adherenceTracks, edge: $edge)) {
+                            ForEach(profile.adherenceTracks, id: \.self) { track in
+                                Text(track.title).tag(track)
+                            }
                         }
+                        .pickerStyle(.segmented)
                     }
-                    .pickerStyle(.segmented)
 
                     yearSwitcher
                     VStack(alignment: .leading, spacing: 14) {
@@ -32,12 +35,15 @@ struct AdherenceCalendarView: View {
                     }
                     .id(track)
                     .switchTransition(edge: edge)
-                    .swipeToSwitch($track, among: AdherenceTrack.allCases, edge: $edge)
+                    .swipeToSwitch($track, among: profile.adherenceTracks, edge: $edge)
                 }
                 .padding(.horizontal, 16)
                 .padding(.bottom, 24)
             }
             .onAppear {
+                if !profile.adherenceTracks.contains(track) {
+                    track = .general
+                }
                 proxy.scrollTo(calendar.monday(of: .now), anchor: .center)
             }
         }

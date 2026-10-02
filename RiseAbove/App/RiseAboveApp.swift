@@ -1,4 +1,5 @@
 import SwiftUI
+import TrainingKit
 
 @main
 struct RiseAboveApp: App {
@@ -24,6 +25,11 @@ struct RiseAboveApp: App {
         _plans = State(initialValue: plans)
         _adherence = State(initialValue: adherence)
         _backup = State(initialValue: BackupManager(library: library, plans: plans, raceGoal: raceGoal, adherence: adherence))
+        let defaults = UserDefaults.standard
+        if !defaults.bool(forKey: OnboardingView.completedKey),
+           library.hasData || healthSync.isEnabled || !plans.book.plans.isEmpty || raceGoal.config != nil {
+            defaults.set(true, forKey: OnboardingView.completedKey)
+        }
         healthSync.start()
     }
 

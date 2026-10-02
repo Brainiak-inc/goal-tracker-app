@@ -74,6 +74,7 @@ struct WebParityTests {
             config: config,
             activities: fixtures.activities,
             fitness: item.fitness?.snapshot,
+            model: .legacy,
             now: fixtures.now,
             calendar: fixtures.calendar
         )

@@ -185,6 +185,9 @@ final class BackupManager {
             UnitSystem.storageKey: defaults.string(forKey: UnitSystem.storageKey) ?? UnitSystem.metric.rawValue,
             PlanStore.autoCheckKey: (defaults.object(forKey: PlanStore.autoCheckKey) as? Bool ?? true) ? "true" : "false"
         ]
+        if let profile = defaults.string(forKey: SportProfile.storageKey) {
+            preferences[SportProfile.storageKey] = profile
+        }
         if let since = defaults.string(forKey: ActivityLibrary.sinceKey) {
             preferences[ActivityLibrary.sinceKey] = since
         }
@@ -197,6 +200,9 @@ final class BackupManager {
         }
         if let autoCheck = preferences[PlanStore.autoCheckKey] {
             defaults.set(autoCheck == "true", forKey: PlanStore.autoCheckKey)
+        }
+        if let profile = preferences[SportProfile.storageKey], SportProfile(rawValue: profile) != nil {
+            defaults.set(profile, forKey: SportProfile.storageKey)
         }
     }
 

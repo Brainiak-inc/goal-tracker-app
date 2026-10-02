@@ -205,9 +205,10 @@ private struct FormCard: View {
 private struct VolumeCard: View {
     @Environment(ActivityLibrary.self) private var library
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
+    @AppStorage(SportProfile.storageKey) private var profile: SportProfile = .triathlon
 
     private var rows: [(discipline: Discipline, current: Double, previous: Double)] {
-        Discipline.triathlon.compactMap { discipline in
+        profile.disciplines.compactMap { discipline in
             let weeks = library.weeklyVolume(discipline)
             guard weeks.reduce(0, +) > 0, let current = weeks.last else { return nil }
             return (discipline, current, weeks.dropLast().last ?? 0)

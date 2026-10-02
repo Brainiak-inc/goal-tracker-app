@@ -9,6 +9,7 @@ struct SettingsView: View {
     @Environment(\.openURL) private var openURL
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
     @AppStorage(PlanStore.autoCheckKey) private var autoCheck = true
+    @AppStorage(SportProfile.storageKey) private var profile: SportProfile = .triathlon
 
     var body: some View {
         NavigationStack {
@@ -21,7 +22,7 @@ struct SettingsView: View {
                     }
                     .pickerStyle(.segmented)
                     .labelsHidden()
-                    ForEach(Discipline.triathlon, id: \.self) { discipline in
+                    ForEach(profile.disciplines, id: \.self) { discipline in
                         LabeledContent {
                             Text(unitsDescription(discipline))
                                 .multilineTextAlignment(.trailing)
@@ -51,6 +52,13 @@ struct SettingsView: View {
                 .listRowBackground(Palette.surface)
 
                 Section {
+                    NavigationLink {
+                        SportsSettingsView()
+                    } label: {
+                        LabeledContent("Sports") {
+                            Text(profile.summary)
+                        }
+                    }
                     NavigationLink {
                         ThresholdView()
                     } label: {
@@ -103,6 +111,19 @@ struct SettingsView: View {
                     }
                 } header: {
                     SettingsHeader("Data")
+                }
+                .listRowBackground(Palette.surface)
+
+                Section {
+                    Button("Run setup again") {
+                        dismiss()
+                        Task {
+                            try? await Task.sleep(for: .milliseconds(450))
+                            UserDefaults.standard.set(false, forKey: OnboardingView.completedKey)
+                        }
+                    }
+                } footer: {
+                    Text("Choose your sports, connect Apple Health, and set a goal step by step.")
                 }
                 .listRowBackground(Palette.surface)
             }

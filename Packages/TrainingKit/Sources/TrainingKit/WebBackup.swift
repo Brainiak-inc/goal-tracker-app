@@ -18,7 +18,7 @@ public struct WebBackup: Sendable {
         guard let root = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
             throw ParseError.notABackup
         }
-        let knownKeys = ["activities_v1", "settings_v1", "plan_v1", "race_config_v1"]
+        let knownKeys = ["activities_v1", "settings_v1", "plan_v1", "race_config_v1", "race_goal_v1"]
         guard knownKeys.contains(where: { root[$0] != nil }) else {
             throw ParseError.notABackup
         }
@@ -44,7 +44,8 @@ public struct WebBackup: Sendable {
         }
         thresholdIsManual = (root["lthr_manual_v1"] as? String) == "true"
         plans = (stored("plan_v1", as: [StoredPlan].self) ?? []).map { $0.plan(calendar: calendar) }
-        raceConfig = stored("race_config_v1", as: StoredRace.self).map { $0.config(calendar: calendar) }
+        raceConfig = stored("race_goal_v1", as: RaceConfig.self)
+            ?? stored("race_config_v1", as: StoredRace.self).map { $0.config(calendar: calendar) }
         adherence = stored("adherence_v1", as: AdherenceBook.self) ?? AdherenceBook()
         preferences = stored("app_preferences_v1", as: [String: String].self) ?? [:]
     }
@@ -137,13 +138,16 @@ public struct WebBackup: Sendable {
             root["app_preferences_v1"] = try text(preferences)
         }
         if let raceConfig {
-            root["race_config_v1"] = try text(ExportedRace(
-                distance: raceConfig.distance.rawValue,
-                date: day(raceConfig.raceDay),
-                targetSeconds: raceConfig.targetTime,
-                weeklyHours: raceConfig.weeklyHours,
-                fromZero: raceConfig.fromZero
-            ))
+            root["race_goal_v1"] = try text(raceConfig)
+            if let preset = raceConfig.distance.preset, raceConfig.distance.isWebCompatible {
+                root["race_config_v1"] = try text(ExportedRace(
+                    distance: preset.rawValue,
+                    date: day(raceConfig.raceDay),
+                    targetSeconds: raceConfig.targetTime,
+                    weeklyHours: raceConfig.weeklyHours,
+                    fromZero: raceConfig.fromZero
+                ))
+            }
         }
         return try JSONSerialization.data(withJSONObject: root, options: [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes])
     }

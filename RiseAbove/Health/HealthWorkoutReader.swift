@@ -49,7 +49,7 @@ struct HealthWorkoutReader {
         }
 
         let workoutHeartRate = workout.statistics(for: Self.heartRate)
-        return WorkoutProbe(
+        var probe = WorkoutProbe(
             id: workout.uuid,
             start: workout.startDate,
             duration: workout.duration,
@@ -71,6 +71,8 @@ struct HealthWorkoutReader {
                 .first,
             calories: workout.statistics(for: Self.energy)?.sumQuantity()?.doubleValue(for: .kilocalorie())
         )
+        probe.elevationGain = (workout.metadata?[HKMetadataKeyElevationAscended] as? HKQuantity)?.doubleValue(for: .meter())
+        return probe
     }
 
     private func samples(_ type: HKQuantityType, matching predicate: NSPredicate) async throws -> [HKQuantitySample] {
