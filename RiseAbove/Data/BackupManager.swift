@@ -181,10 +181,14 @@ final class BackupManager {
     }
 
     static func preferences(_ defaults: UserDefaults) -> [String: String] {
-        [
+        var preferences = [
             UnitSystem.storageKey: defaults.string(forKey: UnitSystem.storageKey) ?? UnitSystem.metric.rawValue,
             PlanStore.autoCheckKey: (defaults.object(forKey: PlanStore.autoCheckKey) as? Bool ?? true) ? "true" : "false"
         ]
+        if let since = defaults.string(forKey: ActivityLibrary.sinceKey) {
+            preferences[ActivityLibrary.sinceKey] = since
+        }
+        return preferences
     }
 
     static func apply(_ preferences: [String: String], to defaults: UserDefaults) {

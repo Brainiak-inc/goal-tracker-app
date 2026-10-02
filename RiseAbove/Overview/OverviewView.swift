@@ -3,24 +3,34 @@ import TrainingKit
 
 struct OverviewView: View {
     @Environment(ActivityLibrary.self) private var library
+    @Environment(HealthSync.self) private var healthSync
 
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
-                    if library.hasData {
+                    if healthSync.isSyncing, healthSync.progress != nil || !library.hasData {
+                        HealthLoadingCard()
+                    }
+                    if !library.activities.isEmpty {
                         if let fitness = library.fitness {
                             HUDCard(fitness: fitness, trend: library.fitnessTrend, weeklyStress: library.weeklyStress)
                             FormCard(fitness: fitness, points: Array(library.series.suffix(42)))
                         }
                         VolumeCard()
                         RecentActivities()
-                    } else {
+                    } else if library.hasData {
+                        PeriodEmptyCard()
+                    } else if !healthSync.isSyncing {
                         EmptyLibraryCard()
                     }
                 }
                 .padding(.horizontal, 16)
                 .padding(.bottom, 24)
+                .animation(.snappy, value: healthSync.isSyncing)
+            }
+            .refreshable {
+                await healthSync.sync()
             }
             .background { ConsoleBackground() }
             .navigationTitle("Overview")
@@ -59,6 +69,25 @@ private struct EmptyLibraryCard: View {
             }
             WebBackupImportButton(title: "Restore from backup")
                 .buttonStyle(.consoleSecondary)
+        }
+        .padding(18)
+        .consoleCard()
+    }
+}
+
+private struct PeriodEmptyCard: View {
+    @Environment(ActivityLibrary.self) private var library
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            if let since = library.visibleSince {
+                Text("No workouts since \(Text(since, format: .dateTime.day().month(.wide).year()))")
+                    .font(.headline)
+                    .foregroundStyle(Palette.text)
+            }
+            Text("Earlier workouts are hidden. You can change the period in Settings → Workout period.")
+                .foregroundStyle(Palette.muted)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .padding(18)
         .consoleCard()
@@ -177,29 +206,33 @@ private struct VolumeCard: View {
     @Environment(ActivityLibrary.self) private var library
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
 
-    private var rows: [(discipline: Discipline, last: Double, trend: Trend?)] {
+    private var rows: [(discipline: Discipline, current: Double, previous: Double)] {
         Discipline.triathlon.compactMap { discipline in
             let weeks = library.weeklyVolume(discipline)
-            guard weeks.reduce(0, +) > 0, let last = weeks.last else { return nil }
-            return (discipline, last, Trend.volume(weeks))
+            guard weeks.reduce(0, +) > 0, let current = weeks.last else { return nil }
+            return (discipline, current, weeks.dropLast().last ?? 0)
         }
     }
 
     var body: some View {
         if !rows.isEmpty {
             VStack(alignment: .leading, spacing: 10) {
-                Text("Volume last week")
+                Text("Volume this week")
                     .consoleLabel()
                 ForEach(rows, id: \.discipline) { row in
                     ViewThatFits(in: .horizontal) {
-                        HStack {
+                        HStack(alignment: .firstTextBaseline) {
                             name(row.discipline)
                             Spacer()
-                            value(row)
+                            VStack(alignment: .trailing, spacing: 2) {
+                                current(row)
+                                previous(row)
+                            }
                         }
                         VStack(alignment: .leading, spacing: 2) {
                             name(row.discipline)
-                            value(row)
+                            current(row)
+                            previous(row)
                         }
                     }
                 }
@@ -214,15 +247,16 @@ private struct VolumeCard: View {
             .foregroundStyle(Palette.text)
     }
 
-    private func value(_ row: (discipline: Discipline, last: Double, trend: Trend?)) -> some View {
-        HStack(spacing: 6) {
-            Text(Formatting.distance(row.last, discipline: row.discipline, units: units))
-                .font(.system(.body, design: .monospaced))
-            if let trend = row.trend {
-                Text(trend.arrow)
-                    .foregroundStyle(trend == .up ? Palette.fitness : trend == .down ? Palette.fatigue : Palette.muted)
-            }
-        }
+    private func current(_ row: (discipline: Discipline, current: Double, previous: Double)) -> some View {
+        Text(Formatting.distance(row.current, discipline: row.discipline, units: units))
+            .font(.system(.body, design: .monospaced))
+            .foregroundStyle(Palette.text)
+    }
+
+    private func previous(_ row: (discipline: Discipline, current: Double, previous: Double)) -> some View {
+        Text("last week: \(Formatting.distance(row.previous, discipline: row.discipline, units: units))")
+            .font(.caption)
+            .foregroundStyle(Palette.muted)
     }
 }
 

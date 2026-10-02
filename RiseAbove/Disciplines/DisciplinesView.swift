@@ -3,6 +3,7 @@ import TrainingKit
 
 struct DisciplinesView: View {
     @Environment(ActivityLibrary.self) private var library
+    @Environment(HealthSync.self) private var healthSync
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
     @State private var selection: Discipline?
     @State private var selectedWeek: Int?
@@ -31,7 +32,9 @@ struct DisciplinesView: View {
                 .padding(.horizontal, 16)
                 .padding(.bottom, 24)
             }
-
+            .refreshable {
+                await healthSync.sync()
+            }
             .background { ConsoleBackground() }
             .navigationTitle("Disciplines")
             .settingsToolbar()
@@ -148,18 +151,20 @@ struct DisciplinesView: View {
     private var volumeCard: some View {
         let weeks = library.weeklyVolume(discipline.wrappedValue)
         if weeks.reduce(0, +) > 0 {
-            let starts = weekStarts(count: weeks.count)
+            let starts = library.weekStarts(weeks.count)
             let shown = selectedWeek ?? weeks.count - 1
+            let isCurrent = shown == weeks.count - 1
+            let trend = isCurrent || shown == 0 ? nil : Trend.volume(Array(weeks[...shown]))
             VStack(alignment: .leading, spacing: 10) {
                 ViewThatFits(in: .horizontal) {
                     HStack(alignment: .firstTextBaseline) {
-                        volumeTitle(starts[shown])
+                        volumeTitle(starts[shown], isCurrent: isCurrent)
                         Spacer()
-                        volumeValue(weeks[shown], trend: selectedWeek == nil ? Trend.volume(weeks) : nil)
+                        volumeValue(weeks[shown], trend: trend)
                     }
                     VStack(alignment: .leading, spacing: 4) {
-                        volumeTitle(starts[shown])
-                        volumeValue(weeks[shown], trend: selectedWeek == nil ? Trend.volume(weeks) : nil)
+                        volumeTitle(starts[shown], isCurrent: isCurrent)
+                        volumeValue(weeks[shown], trend: trend)
                     }
                 }
                 VolumeBars(
@@ -182,17 +187,19 @@ struct DisciplinesView: View {
         }
     }
 
-    private func volumeTitle(_ start: Date) -> some View {
+    private func volumeTitle(_ start: Date, isCurrent: Bool) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text("Volume · 10 weeks").consoleLabel()
-            Text(weekRange(start))
-                .font(.subheadline.weight(.semibold))
-                .foregroundStyle(selectedWeek == nil ? Palette.text : Palette.fitness)
+            Group {
+                if isCurrent {
+                    Text("This week · \(weekRange(start))")
+                } else {
+                    Text(weekRange(start))
+                }
+            }
+            .font(.subheadline.weight(.semibold))
+            .foregroundStyle(selectedWeek == nil ? Palette.text : Palette.fitness)
         }
-    }
-
-    private func weekStarts(count: Int) -> [Date] {
-        WeeklyVolume.weekStarts(weeks: count, now: .now, calendar: library.calendar)
     }
 
     private func weekRange(_ start: Date) -> String {
@@ -266,7 +273,7 @@ struct DisciplinesView: View {
 private extension DisciplinesView {
     func filtered(_ activities: [Activity]) -> [Activity] {
         guard let selectedWeek else { return activities }
-        let starts = weekStarts(count: 10)
+        let starts = library.weekStarts()
         guard starts.indices.contains(selectedWeek) else { return activities }
         let start = starts[selectedWeek]
         let end = library.calendar.date(byAdding: .day, value: 7, to: start) ?? start
