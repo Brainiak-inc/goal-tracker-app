@@ -1111,6 +1111,26 @@
         }
       }
     },
+    "Earlier workouts are hidden. You can change the period in Settings → Workout period." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Более ранние тренировки скрыты. Период можно изменить в разделе Настройки → Период тренировок."
+          }
+        }
+      }
+    },
+    "Earlier workouts stay in the app and in backups, but they are hidden from lists and left out of calculations: training load, threshold heart rate, and race readiness. For an accurate fitness value, pick a date at least six weeks back." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Более ранние тренировки остаются в приложении и в резервных копиях, но не показываются в списках и не учитываются в расчётах: нагрузке, пороговом пульсе и готовности к старту. Чтобы оценка формы была точной, выберите дату хотя бы за шесть недель до сегодняшнего дня."
+          }
+        }
+      }
+    },
     "Edit goal" : {
       "localizations" : {
         "ru" : {
@@ -1321,6 +1341,16 @@
         }
       }
     },
+    "From" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начиная с"
+          }
+        }
+      }
+    },
     "From Health and CSV imports, with heart rate" : {
       "localizations" : {
         "ru" : {
@@ -1447,6 +1477,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Источники пульса"
+          }
+        }
+      }
+    },
+    "Hidden workouts" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скрыто тренировок"
           }
         }
       }
@@ -1617,6 +1657,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нагрузка (TSS)"
+          }
+        }
+      }
+    },
+    "Loading workouts from Apple Health" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загружаем тренировки из Apple Health"
+          }
+        }
+      }
+    },
+    "Loading workouts: %lld of %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загрузка тренировок: %1$lld из %2$lld"
           }
         }
       }
@@ -1861,6 +1921,16 @@
         }
       }
     },
+    "No workouts since %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С %@ тренировок нет"
+          }
+        }
+      }
+    },
     "No workouts yet" : {
       "localizations" : {
         "ru" : {
@@ -1927,6 +1997,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Идёшь в графике"
+          }
+        }
+      }
+    },
+    "Only from a chosen date" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Только с выбранной даты"
           }
         }
       }
@@ -2141,6 +2221,16 @@
         }
       }
     },
+    "Reload all workouts" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Загрузить все тренировки заново"
+          }
+        }
+      }
+    },
     "Remove goal" : {
       "localizations" : {
         "ru" : {
@@ -2317,6 +2407,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Показать все"
+          }
+        }
+      }
+    },
+    "Show workouts from" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показывать тренировки с"
           }
         }
       }
@@ -2511,6 +2611,16 @@
         }
       }
     },
+    "The first time can take a minute: the whole workout history is loaded." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "В первый раз это может занять минуту: загружается вся история тренировок."
+          }
+        }
+      }
+    },
     "The highest average heart rate among runs of 20 minutes or longer. It updates with every import or sync." : {
       "localizations" : {
         "ru" : {
@@ -2567,6 +2677,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "На этой неделе"
+          }
+        }
+      }
+    },
+    "This week · %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текущая неделя · %@"
           }
         }
       }
@@ -2721,12 +2841,22 @@
         }
       }
     },
-    "Volume last week" : {
+    "Use this if some workouts from Health are missing. Workouts you deleted in the app won't come back." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Объём за прошлую неделю"
+            "value" : "Если каких-то тренировок из Health не хватает. Тренировки, удалённые в приложении, не вернутся."
+          }
+        }
+      }
+    },
+    "Volume this week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Объём за эту неделю"
           }
         }
       }
@@ -2847,6 +2977,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "С пульсом"
+          }
+        }
+      }
+    },
+    "Workout period" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Период тренировок"
           }
         }
       }
@@ -3137,6 +3277,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "в неделю"
+          }
+        }
+      }
+    },
+    "previous week: %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "предыдущая неделя: %@"
           }
         }
       }

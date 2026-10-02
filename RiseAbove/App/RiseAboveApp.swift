@@ -51,10 +51,7 @@ struct RiseAboveApp: App {
                 break
             }
         }
-        .onChange(of: library.activities) {
-            backup.dataDidChange()
-        }
-        .onChange(of: library.settings) {
+        .onChange(of: library.revision) {
             backup.dataDidChange()
         }
         .onChange(of: raceGoal.config) {

@@ -65,6 +65,8 @@ struct SettingsView: View {
                 }
                 .listRowBackground(Palette.surface)
 
+                WorkoutPeriodSection()
+
                 Section {
                     Toggle("Tick off days from actual workouts", isOn: $autoCheck)
                 } header: {
@@ -137,6 +139,46 @@ private extension SettingsView {
     }
 }
 
+private struct WorkoutPeriodSection: View {
+    @Environment(ActivityLibrary.self) private var library
+
+    var body: some View {
+        Section {
+            Toggle("Only from a chosen date", isOn: isLimited)
+            if let since = library.visibleSince {
+                LabeledContent {
+                    GlassDatePicker(
+                        title: "Show workouts from",
+                        selection: Binding { since } set: { library.setVisibleSince($0) }
+                    )
+                } label: {
+                    Text("From")
+                }
+                LabeledContent("Hidden workouts", value: library.hiddenCount, format: .number)
+            }
+        } header: {
+            SettingsHeader("Workout period")
+        } footer: {
+            Text("Earlier workouts stay in the app and in backups, but they are hidden from lists and left out of calculations: training load, threshold heart rate, and race readiness. For an accurate fitness value, pick a date at least six weeks back.")
+        }
+        .listRowBackground(Palette.surface)
+    }
+
+    private var isLimited: Binding<Bool> {
+        Binding {
+            library.visibleSince != nil
+        } set: { isOn in
+            withAnimation(.snappy) {
+                library.setVisibleSince(isOn ? defaultStart : nil)
+            }
+        }
+    }
+
+    private var defaultStart: Date {
+        library.calendar.date(byAdding: .month, value: -6, to: .now) ?? .now
+    }
+}
+
 struct SettingsHeader: View {
     let title: LocalizedStringKey
 
@@ -173,9 +215,15 @@ struct HealthSettingsView: View {
                     LabeledContent("Status") {
                         HealthSyncStatus()
                     }
+                    if case .failed(let message) = healthSync.status {
+                        Text(verbatim: message)
+                            .font(.footnote)
+                            .foregroundStyle(Palette.fatigue)
+                    }
                     Button("Sync now") {
                         Task { await healthSync.sync() }
                     }
+                    .disabled(healthSync.isSyncing)
                     Button("Disconnect", role: .destructive) {
                         healthSync.disable()
                     }
@@ -190,6 +238,18 @@ struct HealthSettingsView: View {
                 }
             }
             .listRowBackground(Palette.surface)
+
+            if healthSync.isEnabled {
+                Section {
+                    Button("Reload all workouts") {
+                        Task { await healthSync.reloadAll() }
+                    }
+                    .disabled(healthSync.isSyncing)
+                } footer: {
+                    Text("Use this if some workouts from Health are missing. Workouts you deleted in the app won't come back.")
+                }
+                .listRowBackground(Palette.surface)
+            }
 
             Section {
                 NavigationLink("Health data check") {
@@ -227,7 +287,7 @@ struct ImportDataView: View {
 
             if library.hasData {
                 Section {
-                    LabeledContent("Workouts in the app", value: library.activities.count, format: .number)
+                    LabeledContent("Workouts in the app", value: library.storedCount, format: .number)
                     Button("Delete imported data", role: .destructive) {
                         confirmsDeletion = true
                     }

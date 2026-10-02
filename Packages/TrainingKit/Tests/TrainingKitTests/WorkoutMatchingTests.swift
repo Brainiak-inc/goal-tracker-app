@@ -61,6 +61,39 @@ struct WeekStartsTests {
         let expected = [7, 14, 21].map { calendar.date(from: DateComponents(year: 2026, month: 9, day: $0))! }
         #expect(starts == expected)
     }
+
+    @Test func currentWeekIsIncludedOnRequest() {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "UTC")!
+        let now = calendar.date(from: DateComponents(year: 2026, month: 10, day: 2, hour: 12))!
+        let starts = WeeklyVolume.weekStarts(weeks: 3, now: now, calendar: calendar, includingCurrent: true)
+        let expected = [
+            calendar.date(from: DateComponents(year: 2026, month: 9, day: 14))!,
+            calendar.date(from: DateComponents(year: 2026, month: 9, day: 21))!,
+            calendar.date(from: DateComponents(year: 2026, month: 9, day: 28))!
+        ]
+        #expect(starts == expected)
+
+        let today = Activity(
+            start: calendar.date(from: DateComponents(year: 2026, month: 10, day: 2, hour: 7))!,
+            discipline: .run,
+            sourceType: "Running",
+            title: "",
+            duration: 3600,
+            distance: 10_000
+        )
+        let lastWeek = Activity(
+            start: calendar.date(from: DateComponents(year: 2026, month: 9, day: 24, hour: 7))!,
+            discipline: .run,
+            sourceType: "Running",
+            title: "",
+            duration: 1800,
+            distance: 5_000
+        )
+        let series = WeeklyVolume.series([lastWeek, today], discipline: .run, weeks: 3, now: now, calendar: calendar, includingCurrent: true)
+        #expect(series == [0, 5_000, 10_000])
+        #expect(WeeklyVolume.series([lastWeek, today], discipline: .run, weeks: 3, now: now, calendar: calendar) == [0, 0, 5_000])
+    }
 }
 
 struct WebBackupExportTests {

@@ -25,14 +25,14 @@ struct HealthWorkoutReader {
 
     let store: HKHealthStore
 
-    func read(_ workout: HKWorkout) async throws -> WorkoutProbe {
+    func read(_ workout: HKWorkout) async -> WorkoutProbe {
         let interval = HKQuery.predicateForSamples(
             withStart: workout.startDate,
             end: workout.endDate,
             options: .strictStartDate
         )
-        let heartRateSamples = try await samples(Self.heartRate, matching: interval)
-        let heartRateStatistics = try await HKStatisticsQueryDescriptor(
+        let heartRateSamples = (try? await samples(Self.heartRate, matching: interval)) ?? []
+        let heartRateStatistics = try? await HKStatisticsQueryDescriptor(
             predicate: .quantitySample(type: Self.heartRate, predicate: interval),
             options: [.discreteAverage, .discreteMax]
         ).result(for: store)
@@ -43,8 +43,7 @@ struct HealthWorkoutReader {
                 interval,
                 HKQuery.predicateForObjects(from: workout.sourceRevision.source)
             ])
-            let distances = try await samples(type, matching: sameSource)
-            if !distances.isEmpty {
+            if let distances = try? await samples(type, matching: sameSource), !distances.isEmpty {
                 sampleDistance = distances.reduce(0) { $0 + $1.quantity.doubleValue(for: .meter()) }
             }
         }

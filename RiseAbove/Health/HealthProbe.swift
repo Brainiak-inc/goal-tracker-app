@@ -58,7 +58,7 @@ final class HealthProbe {
             let reader = HealthWorkoutReader(store: store)
             var probes: [WorkoutProbe] = []
             for workout in try await descriptor.result(for: store) {
-                probes.append(try await reader.read(workout))
+                probes.append(await reader.read(workout))
             }
             workouts = probes
             status = .loaded

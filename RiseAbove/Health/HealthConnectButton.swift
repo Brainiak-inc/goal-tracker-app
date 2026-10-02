@@ -36,7 +36,11 @@ struct HealthSyncStatus: View {
     var body: some View {
         switch healthSync.status {
         case .syncing:
-            Text("Syncing…")
+            if let progress = healthSync.progress {
+                Text("Loading workouts: \(progress.done) of \(progress.total)")
+            } else {
+                Text("Syncing…")
+            }
         case .failed:
             Text("Sync failed")
                 .foregroundStyle(Palette.fatigue)
@@ -47,5 +51,37 @@ struct HealthSyncStatus: View {
                 Text("Not synced yet")
             }
         }
+    }
+}
+
+struct HealthLoadingCard: View {
+    @Environment(HealthSync.self) private var healthSync
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 10) {
+                ProgressView()
+                    .tint(Palette.fitness)
+                Text("Loading workouts from Apple Health")
+                    .font(.headline)
+                    .foregroundStyle(Palette.text)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            if let progress = healthSync.progress {
+                ProgressView(value: Double(progress.done), total: Double(max(progress.total, 1)))
+                    .tint(Palette.fitness)
+                Text("\(progress.done) of \(progress.total)")
+                    .font(.system(.footnote, design: .monospaced))
+                    .foregroundStyle(Palette.muted)
+            } else {
+                Text("The first time can take a minute: the whole workout history is loaded.")
+                    .font(.footnote)
+                    .foregroundStyle(Palette.muted)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+        }
+        .padding(18)
+        .consoleCard()
+        .accessibilityElement(children: .combine)
     }
 }
