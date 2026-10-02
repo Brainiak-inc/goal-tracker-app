@@ -34,7 +34,7 @@ struct OverviewView: View {
             }
             .background { ConsoleBackground() }
             .navigationTitle("Overview")
-            .settingsToolbar()
+            .settingsToolbar(showsSync: false)
         }
     }
 }

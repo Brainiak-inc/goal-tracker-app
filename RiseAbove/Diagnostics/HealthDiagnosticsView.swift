@@ -12,7 +12,7 @@ struct HealthDiagnosticsView: View {
             case .idle, .loading:
                 Section {
                     HStack(spacing: 12) {
-                        ProgressView()
+                        ConsoleSpinner(size: 16, lineWidth: 2)
                         Text("Loading…")
                     }
                 }

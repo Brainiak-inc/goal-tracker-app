@@ -310,16 +310,36 @@ struct ImportDataView: View {
 }
 
 private struct SettingsToolbar: ViewModifier {
+    let showsSync: Bool
+
+    @Environment(HealthSync.self) private var healthSync
     @State private var isPresented = false
+    @State private var isSyncVisible = false
 
     func body(content: Content) -> some View {
         content
             .toolbar {
+                if showsSync, isSyncVisible {
+                    ToolbarItem(placement: .topBarLeading) {
+                        ConsoleSpinner(size: 18, lineWidth: 2.2)
+                            .frame(width: 36, height: 36)
+                            .accessibilityElement()
+                            .accessibilityLabel(Text("Syncing with Apple Health"))
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Settings", systemImage: "person.crop.circle") {
                         isPresented = true
                     }
                 }
+            }
+            .task(id: healthSync.isSyncing) {
+                guard healthSync.isSyncing else {
+                    isSyncVisible = false
+                    return
+                }
+                try? await Task.sleep(for: .milliseconds(400))
+                isSyncVisible = healthSync.isSyncing
             }
             .sheet(isPresented: $isPresented) {
                 SettingsView()
@@ -328,7 +348,7 @@ private struct SettingsToolbar: ViewModifier {
 }
 
 extension View {
-    func settingsToolbar() -> some View {
-        modifier(SettingsToolbar())
+    func settingsToolbar(showsSync: Bool = true) -> some View {
+        modifier(SettingsToolbar(showsSync: showsSync))
     }
 }
