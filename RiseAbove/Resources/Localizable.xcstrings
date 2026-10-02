@@ -2541,6 +2541,16 @@
         }
       }
     },
+    "Syncing with Apple Health" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синхронизация с Apple Health"
+          }
+        }
+      }
+    },
     "Syncing…" : {
       "localizations" : {
         "ru" : {

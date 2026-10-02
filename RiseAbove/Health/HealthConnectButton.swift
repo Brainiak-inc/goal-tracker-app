@@ -36,10 +36,13 @@ struct HealthSyncStatus: View {
     var body: some View {
         switch healthSync.status {
         case .syncing:
-            if let progress = healthSync.progress {
-                Text("Loading workouts: \(progress.done) of \(progress.total)")
-            } else {
-                Text("Syncing…")
+            HStack(spacing: 6) {
+                ConsoleSpinner(size: 11, lineWidth: 1.6)
+                if let progress = healthSync.progress {
+                    Text("Loading workouts: \(progress.done) of \(progress.total)")
+                } else {
+                    Text("Syncing…")
+                }
             }
         case .failed:
             Text("Sync failed")
@@ -60,16 +63,14 @@ struct HealthLoadingCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 10) {
-                ProgressView()
-                    .tint(Palette.fitness)
+                ConsoleSpinner(size: 18, lineWidth: 2.2)
                 Text("Loading workouts from Apple Health")
                     .font(.headline)
                     .foregroundStyle(Palette.text)
                     .fixedSize(horizontal: false, vertical: true)
             }
             if let progress = healthSync.progress {
-                ProgressView(value: Double(progress.done), total: Double(max(progress.total, 1)))
-                    .tint(Palette.fitness)
+                ConsoleProgressBar(value: Double(progress.done) / Double(max(progress.total, 1)))
                 Text("\(progress.done) of \(progress.total)")
                     .font(.system(.footnote, design: .monospaced))
                     .foregroundStyle(Palette.muted)

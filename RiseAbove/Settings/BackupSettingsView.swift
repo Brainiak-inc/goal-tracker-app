@@ -124,7 +124,10 @@ struct BackupStatusText: View {
     var body: some View {
         Group {
             if backup.status == .writing {
-                Text("Saving…")
+                HStack(spacing: 6) {
+                    ConsoleSpinner(size: 11, lineWidth: 1.6)
+                    Text("Saving…")
+                }
             } else if let date = backup.lastBackup {
                 Text(date, format: .relative(presentation: .named))
             } else {
