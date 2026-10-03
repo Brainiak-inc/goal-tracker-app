@@ -38,39 +38,60 @@ enum TextSize: String, CaseIterable, Identifiable {
     }
 }
 
-struct TextSizeAdjustment: ViewModifier {
-    @Environment(\.dynamicTypeSize) private var system
-    @AppStorage(TextSize.storageKey) private var size: TextSize = .standard
+enum TextSizeController {
+    private static let categories: [UIContentSizeCategory] = [
+        .extraSmall,
+        .small,
+        .medium,
+        .large,
+        .extraLarge,
+        .extraExtraLarge,
+        .extraExtraExtraLarge,
+        .accessibilityMedium,
+        .accessibilityLarge,
+        .accessibilityExtraLarge,
+        .accessibilityExtraExtraLarge,
+        .accessibilityExtraExtraExtraLarge
+    ]
 
-    func body(content: Content) -> some View {
-        content.dynamicTypeSize(adjusted)
-    }
-
-    private var adjusted: DynamicTypeSize {
-        let sizes = DynamicTypeSize.allCases
-        let current = sizes.firstIndex(of: system) ?? sizes.firstIndex(of: .large) ?? 0
-        return sizes[min(max(current + size.step, 0), sizes.count - 1)]
+    static func apply(_ size: TextSize) {
+        let system = UIApplication.shared.preferredContentSizeCategory
+        let current = categories.firstIndex(of: system) ?? categories.firstIndex(of: .large) ?? 0
+        let target = categories[min(max(current + size.step, 0), categories.count - 1)]
+        for scene in UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }) {
+            if size == .standard {
+                scene.traitOverrides.remove(UITraitPreferredContentSizeCategory.self)
+            } else {
+                scene.traitOverrides.preferredContentSizeCategory = target
+            }
+        }
     }
 }
 
 struct TextSizePicker: View {
-    @AppStorage(TextSize.storageKey) private var size: TextSize = .standard
+    @Binding var size: TextSize
 
     var body: some View {
         HStack(spacing: 8) {
             ForEach(TextSize.allCases) { option in
+                let isActive = option == size
                 Button {
-                    withAnimation(.snappy) {
-                        size = option
-                    }
+                    size = option
                 } label: {
                     Text(verbatim: "A")
                         .font(.system(size: option.sample, weight: .semibold))
-                        .frame(maxWidth: .infinity, minHeight: 44)
+                        .foregroundStyle(isActive ? Palette.fitness : Palette.text)
+                        .frame(maxWidth: .infinity, minHeight: 48)
+                        .background(Color.white.opacity(isActive ? 0.1 : 0.05), in: Capsule())
+                        .overlay {
+                            Capsule()
+                                .strokeBorder(isActive ? Palette.fitness.opacity(0.6) : Color.white.opacity(0.12), lineWidth: 1)
+                        }
+                        .contentShape(Capsule())
                 }
-                .buttonStyle(.consoleChip(isActive: option == size))
+                .buttonStyle(.plain)
                 .accessibilityLabel(Text(option.title))
-                .accessibilityAddTraits(option == size ? .isSelected : [])
+                .accessibilityAddTraits(isActive ? .isSelected : [])
             }
         }
         .sensoryFeedback(.selection, trigger: size)

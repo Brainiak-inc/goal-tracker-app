@@ -4,6 +4,7 @@ import TrainingKit
 struct RootView: View {
     @AppStorage(SportProfile.storageKey) private var profile: SportProfile = .triathlon
     @AppStorage(OnboardingView.completedKey) private var isOnboarded = false
+    @AppStorage(TextSize.storageKey) private var textSize: TextSize = .standard
     @State private var navigation = AppNavigation()
 
     var body: some View {
@@ -25,6 +26,12 @@ struct RootView: View {
         .environment(navigation)
         .fullScreenCover(isPresented: Binding { !isOnboarded } set: { isOnboarded = !$0 }) {
             OnboardingView()
+        }
+        .onChange(of: textSize, initial: true) {
+            TextSizeController.apply(textSize)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIContentSizeCategory.didChangeNotification)) { _ in
+            TextSizeController.apply(textSize)
         }
     }
 
