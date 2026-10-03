@@ -104,6 +104,9 @@ struct VolumeBars: View {
     let labels: [String]
     @Binding var selection: Int?
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var grown = false
+
     var body: some View {
         let peak = weeks.max() ?? 0
         let highlighted = selection ?? weeks.count - 1
@@ -117,6 +120,8 @@ struct VolumeBars: View {
                     RoundedRectangle(cornerRadius: 3, style: .continuous)
                         .fill(index == highlighted ? Palette.fitness : Palette.fitness.opacity(0.32))
                         .frame(height: peak > 0 ? max(4, 56 * value / peak) : 4)
+                        .scaleEffect(x: 1, y: grown ? 1 : 0.04, anchor: .bottom)
+                        .animation(reduceMotion ? nil : .fill.delay(0.05 + Double(index) * 0.035), value: grown)
                         .frame(maxWidth: .infinity, maxHeight: 60, alignment: .bottom)
                         .contentShape(Rectangle())
                 }
@@ -127,5 +132,11 @@ struct VolumeBars: View {
         }
         .frame(height: 60, alignment: .bottom)
         .sensoryFeedback(.selection, trigger: selection)
+        .onAppear {
+            grown = true
+        }
+        .onDisappear {
+            grown = false
+        }
     }
 }

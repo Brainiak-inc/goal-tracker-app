@@ -188,6 +188,9 @@ final class BackupManager {
         if let profile = defaults.string(forKey: SportProfile.storageKey) {
             preferences[SportProfile.storageKey] = profile
         }
+        if let textSize = defaults.string(forKey: TextSize.storageKey) {
+            preferences[TextSize.storageKey] = textSize
+        }
         if let since = defaults.string(forKey: ActivityLibrary.sinceKey) {
             preferences[ActivityLibrary.sinceKey] = since
         }
@@ -203,6 +206,9 @@ final class BackupManager {
         }
         if let profile = preferences[SportProfile.storageKey], SportProfile(rawValue: profile) != nil {
             defaults.set(profile, forKey: SportProfile.storageKey)
+        }
+        if let textSize = preferences[TextSize.storageKey], TextSize(rawValue: textSize) != nil {
+            defaults.set(textSize, forKey: TextSize.storageKey)
         }
     }
 

@@ -201,19 +201,21 @@ private struct ReadinessHero: View {
 private struct ReadinessRing: View {
     let percent: Int
 
+    @State private var shown = 0.0
+
     var body: some View {
         ZStack {
             Circle()
                 .stroke(Color.white.opacity(0.07), lineWidth: 12)
             Circle()
-                .trim(from: 0, to: CGFloat(percent) / 100)
+                .trim(from: 0, to: shown / 100)
                 .stroke(Palette.level(percent), style: StrokeStyle(lineWidth: 12, lineCap: .round))
                 .rotationEffect(.degrees(-90))
             Circle()
                 .inset(by: 18)
                 .stroke(Palette.fitness.opacity(0.18), style: StrokeStyle(lineWidth: 1, dash: [2, 5]))
             VStack(spacing: 4) {
-                Text("\(percent)%")
+                CountingPercent(value: shown)
                     .font(.system(size: 44, weight: .bold, design: .monospaced))
                     .foregroundStyle(Palette.level(percent))
                     .minimumScaleFactor(0.6)
@@ -223,7 +225,10 @@ private struct ReadinessRing: View {
             .padding(24)
         }
         .frame(width: 170, height: 170)
-        .accessibilityElement(children: .combine)
+        .fillProgress(to: Double(percent), shown: $shown, delay: 0.1)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("overall"))
+        .accessibilityValue(Text(verbatim: "\(percent)%"))
     }
 }
 
@@ -467,16 +472,20 @@ private struct PaceCard: View {
 struct ProgressBar: View {
     let value: Double
     let color: Color
+    var delay = 0.15
+
+    @State private var shown = 0.0
 
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .leading) {
                 Capsule().fill(Color.white.opacity(0.07))
                 Capsule().fill(color)
-                    .frame(width: proxy.size.width * min(1, max(0, value)))
+                    .frame(width: proxy.size.width * min(1, max(0, shown)))
             }
         }
         .frame(height: 6)
+        .fillProgress(to: value, shown: $shown, delay: delay)
         .accessibilityHidden(true)
     }
 }

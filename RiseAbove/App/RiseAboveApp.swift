@@ -36,6 +36,7 @@ struct RiseAboveApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .modifier(TextSizeAdjustment())
                 .environment(library)
                 .environment(healthSync)
                 .environment(raceGoal)

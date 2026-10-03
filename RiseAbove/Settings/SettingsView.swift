@@ -36,6 +36,16 @@ struct SettingsView: View {
                 .listRowBackground(Palette.surface)
 
                 Section {
+                    TextSizePicker()
+                        .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
+                } header: {
+                    SettingsHeader("Text size")
+                } footer: {
+                    Text("Changes the text size in this app on top of the iOS setting. For even larger text: iOS Settings → Accessibility → Display & Text Size.")
+                }
+                .listRowBackground(Palette.surface)
+
+                Section {
                     Button {
                         if let url = URL(string: UIApplication.openSettingsURLString) {
                             openURL(url)

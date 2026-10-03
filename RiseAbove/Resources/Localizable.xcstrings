@@ -921,6 +921,16 @@
         }
       }
     },
+    "Changes the text size in this app on top of the iOS setting. For even larger text: iOS Settings → Accessibility → Display & Text Size." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Меняет размер текста в этом приложении поверх настройки iOS. Для ещё более крупного текста: Настройки iOS → Универсальный доступ → Дисплей и размер текста."
+          }
+        }
+      }
+    },
     "Check that Health is available on this iPhone and try again." : {
       "localizations" : {
         "ru" : {
@@ -2205,6 +2215,26 @@
         }
       }
     },
+    "Larger" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Крупнее"
+          }
+        }
+      }
+    },
+    "Largest" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ещё крупнее"
+          }
+        }
+      }
+    },
     "Last backup" : {
       "localizations" : {
         "ru" : {
@@ -3245,6 +3275,16 @@
         }
       }
     },
+    "Smaller" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мельче"
+          }
+        }
+      }
+    },
     "Source" : {
       "localizations" : {
         "ru" : {
@@ -3301,6 +3341,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Спринт"
+          }
+        }
+      }
+    },
+    "Standard" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стандартный"
           }
         }
       }
@@ -3511,6 +3561,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Нормы считаются от лимита времени при спокойном темпе, потому что цели по дистанции нет."
+          }
+        }
+      }
+    },
+    "Text size" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Размер текста"
           }
         }
       }
