@@ -9,6 +9,7 @@ struct SettingsView: View {
     @Environment(\.openURL) private var openURL
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
     @AppStorage(PlanStore.autoCheckKey) private var autoCheck = true
+    @AppStorage(TextSize.storageKey) private var textSize: TextSize = .standard
     @AppStorage(SportProfile.storageKey) private var profile: SportProfile = .triathlon
 
     var body: some View {
@@ -36,7 +37,7 @@ struct SettingsView: View {
                 .listRowBackground(Palette.surface)
 
                 Section {
-                    TextSizePicker()
+                    TextSizePicker(size: $textSize)
                         .listRowInsets(EdgeInsets(top: 12, leading: 16, bottom: 12, trailing: 16))
                 } header: {
                     SettingsHeader("Text size")
