@@ -12,6 +12,8 @@ struct WeekCard: View {
     let onRemove: () -> Void
 
     @Environment(\.calendar) private var calendar
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @State private var isFilled = false
 
     private var week: PlanWeek { plan.weeks[index] }
 
@@ -69,11 +71,18 @@ struct WeekCard: View {
                 HStack(spacing: 3) {
                     ForEach(0..<progress.total, id: \.self) { item in
                         Capsule()
-                            .fill(item < progress.done ? Palette.fitness : Color.white.opacity(0.12))
+                            .fill(isFilled && item < progress.done ? Palette.fitness : Color.white.opacity(0.12))
                             .frame(height: 4)
+                            .animation(reduceMotion ? nil : .fill.delay(0.1 + Double(item) * 0.06), value: isFilled)
                     }
                 }
                 .accessibilityHidden(true)
+                .onAppear {
+                    isFilled = true
+                }
+                .onDisappear {
+                    isFilled = false
+                }
             }
         }
     }

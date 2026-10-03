@@ -4,7 +4,9 @@ import TrainingKit
 struct DisciplinesView: View {
     @Environment(ActivityLibrary.self) private var library
     @Environment(HealthSync.self) private var healthSync
+    @Environment(AppNavigation.self) private var navigation
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
+    @AppStorage(SportProfile.storageKey) private var profile: SportProfile = .triathlon
     @State private var selection: Discipline?
     @State private var selectedWeek: Int?
     @State private var selectedActivity: Activity?
@@ -14,20 +16,22 @@ struct DisciplinesView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
-                    Picker("Discipline", selection: animatedSwitch(discipline, among: Discipline.triathlon, edge: $edge)) {
-                        ForEach(Discipline.triathlon, id: \.self) { discipline in
-                            Text(discipline.title).tag(discipline)
+                    if profile.single == nil {
+                        Picker("Discipline", selection: animatedSwitch(discipline, among: profile.disciplines, edge: $edge)) {
+                            ForEach(profile.disciplines, id: \.self) { discipline in
+                                Text(discipline.title).tag(discipline)
+                            }
                         }
-                    }
-                    .pickerStyle(.segmented)
-                    .onChange(of: discipline.wrappedValue) {
-                        selectedWeek = nil
+                        .pickerStyle(.segmented)
                     }
 
                     disciplineContent
                         .id(discipline.wrappedValue)
                         .switchTransition(edge: edge)
-                        .swipeToSwitch(discipline, among: Discipline.triathlon, edge: $edge)
+                        .swipeToSwitch(discipline, among: profile.disciplines, edge: $edge)
+                        .onChange(of: discipline.wrappedValue) {
+                            selectedWeek = nil
+                        }
                 }
                 .padding(.horizontal, 16)
                 .padding(.bottom, 24)
@@ -36,17 +40,27 @@ struct DisciplinesView: View {
                 await healthSync.sync()
             }
             .background { ConsoleBackground() }
-            .navigationTitle("Disciplines")
+            .navigationTitle(Text(profile.single?.title ?? "Disciplines"))
             .settingsToolbar()
             .sheet(item: $selectedActivity) { activity in
                 ActivityDetailSheet(activity: activity)
+            }
+            .onChange(of: navigation.requestedDiscipline, initial: true) { _, requested in
+                guard let requested else { return }
+                selectedWeek = nil
+                selection = requested
+                navigation.requestedDiscipline = nil
             }
         }
     }
 
     private var discipline: Binding<Discipline> {
         Binding {
-            selection ?? Discipline.triathlon.max { library.activities(for: $0).count < library.activities(for: $1).count } ?? .run
+            let disciplines = profile.disciplines
+            if let selection, disciplines.contains(selection) {
+                return selection
+            }
+            return disciplines.max { library.activities(for: $0).count < library.activities(for: $1).count } ?? .run
         } set: {
             selection = $0
         }

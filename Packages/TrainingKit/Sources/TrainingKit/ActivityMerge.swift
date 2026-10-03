@@ -21,6 +21,7 @@ extension Activity {
         averageHeartRate = averageHeartRate ?? other.averageHeartRate
         maxHeartRate = maxHeartRate ?? other.maxHeartRate
         calories = calories ?? other.calories
+        elevationGain = elevationGain ?? other.elevationGain
         if title.isEmpty {
             title = other.title
         }

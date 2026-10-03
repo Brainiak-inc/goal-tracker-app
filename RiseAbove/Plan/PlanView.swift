@@ -6,6 +6,7 @@ struct PlanView: View {
     @Environment(ActivityLibrary.self) private var library
     @Environment(BackupManager.self) private var backup
     @Environment(\.calendar) private var calendar
+    @AppStorage(SportProfile.storageKey) private var profile: SportProfile = .triathlon
 
     @State private var draft: WorkoutDraft?
     @State private var createsPlan = false
@@ -217,7 +218,7 @@ struct PlanView: View {
         return WorkoutDraft(
             weekID: plan.weeks[index].id,
             day: defaultDay,
-            workout: PlannedWorkout(discipline: .run),
+            workout: PlannedWorkout(discipline: profile.disciplines.last ?? .run),
             isNew: true
         )
     }

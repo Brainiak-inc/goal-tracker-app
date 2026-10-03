@@ -42,7 +42,8 @@ public enum GarminCSV {
                 distance: distance,
                 averageHeartRate: number(cell(row, "Avg HR")),
                 maxHeartRate: number(cell(row, "Max HR")),
-                calories: number(cell(row, "Calories"))
+                calories: number(cell(row, "Calories")),
+                elevationGain: number(cell(row, "Total Ascent"))
             ))
         }
         activities.sort { $0.start < $1.start }

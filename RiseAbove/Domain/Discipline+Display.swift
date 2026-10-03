@@ -11,4 +11,14 @@ extension Discipline {
         case .other: "Other"
         }
     }
+
+    var symbol: String {
+        switch self {
+        case .swim: "figure.pool.swim"
+        case .bike: "figure.outdoor.cycle"
+        case .run: "figure.run"
+        case .strength: "figure.strengthtraining.traditional"
+        case .other: "figure.mixed.cardio"
+        }
+    }
 }

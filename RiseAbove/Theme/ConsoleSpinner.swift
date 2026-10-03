@@ -35,6 +35,8 @@ struct ConsoleSpinner: View {
 struct ConsoleProgressBar: View {
     let value: Double
 
+    @State private var shown = 0.0
+
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .leading) {
@@ -42,11 +44,11 @@ struct ConsoleProgressBar: View {
                     .fill(Color.white.opacity(0.07))
                 Capsule()
                     .fill(Palette.fitness)
-                    .frame(width: max(6, proxy.size.width * min(max(value, 0), 1)))
+                    .frame(width: max(6, proxy.size.width * min(max(shown, 0), 1)))
                     .shadow(color: Palette.fitness.opacity(0.5), radius: 4)
             }
         }
         .frame(height: 6)
-        .animation(.snappy, value: value)
+        .fillProgress(to: value, shown: $shown)
     }
 }

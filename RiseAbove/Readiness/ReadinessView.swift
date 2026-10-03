@@ -4,6 +4,7 @@ import TrainingKit
 struct ReadinessView: View {
     @Environment(ActivityLibrary.self) private var library
     @Environment(RaceGoalStore.self) private var goal
+    @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
     @State private var editsGoal = false
 
     var body: some View {
@@ -15,21 +16,46 @@ struct ReadinessView: View {
                             config: config,
                             activities: library.activities,
                             fitness: library.fitness,
+                            settings: library.settings,
                             now: .now,
                             calendar: library.calendar
                         )
-                        Text(subtitle(config))
+                        Text(config.summary(units: units))
                             .consoleLabel()
-                        ReadinessHero(readiness: readiness)
+                        NavigationLink {
+                            ReadinessGuideView(readiness: readiness, config: config)
+                        } label: {
+                            ReadinessHero(readiness: readiness)
+                        }
+                        .buttonStyle(.plain)
                         if !readiness.hasVolume {
                             Text("There's no volume to assess yet. Import your workouts.")
                                 .foregroundStyle(Palette.fatigue)
                                 .padding(16)
                                 .consoleCard(brackets: false)
                         }
-                        DisciplineReadinessCard(readiness: readiness)
+                        if let prediction = readiness.prediction {
+                            PredictionCard(prediction: prediction, config: config)
+                        }
+                        DisciplineReadinessCard(readiness: readiness, hasManualNorms: config.hasManualNorms)
                         NextWeekCard(steps: readiness.nextWeek.filter { !$0.isDone })
-                        PaceCard(checks: readiness.pace)
+                        if readiness.prediction == nil {
+                            PaceCard(checks: readiness.pace)
+                        }
+                        NavigationLink {
+                            ReadinessGuideView(readiness: readiness, config: config)
+                        } label: {
+                            HStack {
+                                Label("How readiness is calculated", systemImage: "info.circle")
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.footnote.weight(.semibold))
+                            }
+                            .foregroundStyle(Palette.fitness)
+                            .padding(16)
+                            .consoleCard(brackets: false)
+                        }
+                        .buttonStyle(.plain)
                         Text("A volume-based estimate to guide you, not a medical assessment.")
                             .font(.caption)
                             .foregroundStyle(Palette.muted)
@@ -62,12 +88,6 @@ struct ReadinessView: View {
         }
     }
 
-    private func subtitle(_ config: RaceConfig) -> String {
-        let distance = String(localized: config.distance == .full ? "Full distance" : "Half distance")
-        let date = config.raceDay.map { $0.formatted(.dateTime.day().month(.wide).year()) } ?? String(localized: "date not set")
-        let target = Formatting.clock(config.targetTime)
-        return [distance, date, String(localized: "goal \(target)")].joined(separator: " · ")
-    }
 }
 
 private struct GoalInvitation: View {
@@ -101,13 +121,15 @@ private struct ReadinessHero: View {
                 HStack(spacing: 8) { chips }
                 VStack(spacing: 8) { chips }
             }
-            HStack(spacing: 4) {
-                Text("Weakest link:")
-                Text(readiness.limiting.title)
-                    .foregroundStyle(Palette.fatigue)
+            if readiness.disciplines.count > 1 {
+                HStack(spacing: 4) {
+                    Text("Weakest link:")
+                    Text(readiness.limiting.title)
+                        .foregroundStyle(Palette.fatigue)
+                }
+                .font(.subheadline)
+                .foregroundStyle(Palette.muted)
             }
-            .font(.subheadline)
-            .foregroundStyle(Palette.muted)
             if let note = fitnessNote {
                 Text(note)
                     .font(.caption)
@@ -179,19 +201,21 @@ private struct ReadinessHero: View {
 private struct ReadinessRing: View {
     let percent: Int
 
+    @State private var shown = 0.0
+
     var body: some View {
         ZStack {
             Circle()
                 .stroke(Color.white.opacity(0.07), lineWidth: 12)
             Circle()
-                .trim(from: 0, to: CGFloat(percent) / 100)
+                .trim(from: 0, to: shown / 100)
                 .stroke(Palette.level(percent), style: StrokeStyle(lineWidth: 12, lineCap: .round))
                 .rotationEffect(.degrees(-90))
             Circle()
                 .inset(by: 18)
                 .stroke(Palette.fitness.opacity(0.18), style: StrokeStyle(lineWidth: 1, dash: [2, 5]))
             VStack(spacing: 4) {
-                Text("\(percent)%")
+                CountingPercent(value: shown)
                     .font(.system(size: 44, weight: .bold, design: .monospaced))
                     .foregroundStyle(Palette.level(percent))
                     .minimumScaleFactor(0.6)
@@ -201,25 +225,48 @@ private struct ReadinessRing: View {
             .padding(24)
         }
         .frame(width: 170, height: 170)
-        .accessibilityElement(children: .combine)
+        .fillProgress(to: Double(percent), shown: $shown, delay: 0.1)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(Text("overall"))
+        .accessibilityValue(Text(verbatim: "\(percent)%"))
     }
 }
 
 private struct DisciplineReadinessCard: View {
     let readiness: Readiness
+    let hasManualNorms: Bool
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
+
+    private var isSingle: Bool {
+        readiness.disciplines.count == 1
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("By discipline")
+            HStack {
+                Group {
+                    if isSingle {
+                        Text("Training volume")
+                    } else {
+                        Text("By discipline")
+                    }
+                }
                 .consoleLabel()
+                Spacer()
+                if hasManualNorms {
+                    Text("Own targets")
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(Palette.fitness)
+                }
+            }
             ForEach(readiness.disciplines, id: \.discipline) { item in
-                let color = item.discipline == readiness.limiting ? Palette.fatigue : Palette.level(item.percent)
+                let isWeakest = !isSingle && item.discipline == readiness.limiting
+                let color = isWeakest ? Palette.fatigue : Palette.level(item.percent)
                 VStack(alignment: .leading, spacing: 6) {
                     HStack(alignment: .firstTextBaseline) {
                         Text(item.discipline.title)
                             .font(.body.weight(.semibold))
-                            .foregroundStyle(item.discipline == readiness.limiting ? Palette.fatigue : Palette.text)
+                            .foregroundStyle(isWeakest ? Palette.fatigue : Palette.text)
                         Spacer()
                         Text("\(item.percent)%")
                             .font(.system(.subheadline, design: .monospaced, weight: .bold))
@@ -229,6 +276,12 @@ private struct DisciplineReadinessCard: View {
                     VStack(alignment: .leading, spacing: 2) {
                         Text("\(Text("per week")): \(distance(item.weeklyDistance, of: item.targetWeeklyDistance, item.discipline))")
                         Text("\(Text("longest")): \(distance(item.longestDistance, of: item.targetLongestDistance, item.discipline))")
+                        if let fitness = item.fitness, let target = item.targetFitness {
+                            Text("\(Text("fitness")): \(Text("\(fitness.displayRounded) of \(target.displayRounded)").foregroundStyle(Palette.text.opacity(0.85)))")
+                        }
+                        if let weeks = item.activeWeeks {
+                            Text("\(Text("weeks with training")): \(Text("\(weeks) of 6").foregroundStyle(Palette.text.opacity(0.85)))")
+                        }
                     }
                     .font(.caption)
                     .foregroundStyle(Palette.muted)
@@ -299,6 +352,80 @@ private struct NextWeekCard: View {
     }
 }
 
+private struct PredictionCard: View {
+    let prediction: RacePrediction
+    let config: RaceConfig
+    @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
+
+    private var color: Color {
+        if config.isTimed {
+            guard config.hasGoalDistance else { return Palette.fitness }
+            return prediction.distance >= config.distance.leg(for: prediction.discipline) ? Palette.success : Palette.fatigue
+        }
+        return prediction.time <= config.targetTime ? Palette.success : Palette.fatigue
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Forecast")
+                .consoleLabel()
+            ViewThatFits(in: .horizontal) {
+                HStack(alignment: .firstTextBaseline) {
+                    value
+                    Spacer()
+                    goal
+                }
+                VStack(alignment: .leading, spacing: 4) {
+                    value
+                    goal
+                }
+            }
+            Text(basis)
+                .font(.caption)
+                .foregroundStyle(Palette.muted)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+        .padding(16)
+        .consoleCard()
+        .accessibilityElement(children: .combine)
+    }
+
+    private var value: some View {
+        Group {
+            if config.isTimed {
+                Text(Formatting.distance(prediction.distance, discipline: prediction.discipline, units: units))
+            } else {
+                Text(Formatting.raceTime(prediction.time))
+            }
+        }
+        .font(.system(.title, design: .monospaced, weight: .bold))
+        .foregroundStyle(color)
+    }
+
+    private var goal: some View {
+        Group {
+            if config.isTimed {
+                if config.hasGoalDistance {
+                    Text("goal \(Formatting.distance(config.distance.leg(for: prediction.discipline), discipline: prediction.discipline, units: units))")
+                } else {
+                    Text("in \(Int((prediction.time / 3600).rounded())) hours")
+                }
+            } else {
+                Text("goal \(Formatting.raceTime(config.targetTime))")
+            }
+        }
+        .font(.subheadline)
+        .foregroundStyle(Palette.muted)
+    }
+
+    private var basis: LocalizedStringResource {
+        let effort = Formatting.distance(prediction.effortDistance, discipline: prediction.discipline, units: units)
+        let time = Formatting.raceTime(prediction.effortDuration)
+        let date = prediction.effortDate.formatted(.dateTime.day().month(.wide))
+        return "From your best recent effort, \(effort) in \(time) on \(date). It assumes a race effort and gets slower when your long sessions fall short of the distance."
+    }
+}
+
 private struct PaceCard: View {
     let checks: [PaceCheck]
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
@@ -345,16 +472,20 @@ private struct PaceCard: View {
 struct ProgressBar: View {
     let value: Double
     let color: Color
+    var delay = 0.15
+
+    @State private var shown = 0.0
 
     var body: some View {
         GeometryReader { proxy in
             ZStack(alignment: .leading) {
                 Capsule().fill(Color.white.opacity(0.07))
                 Capsule().fill(color)
-                    .frame(width: proxy.size.width * min(1, max(0, value)))
+                    .frame(width: proxy.size.width * min(1, max(0, shown)))
             }
         }
         .frame(height: 6)
+        .fillProgress(to: value, shown: $shown, delay: delay)
         .accessibilityHidden(true)
     }
 }

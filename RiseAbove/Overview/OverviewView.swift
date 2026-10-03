@@ -115,12 +115,15 @@ private struct HUDCard: View {
 
     @ViewBuilder
     private var metrics: some View {
-        HUDMetric(title: "Form", color: Palette.form) {
-            Text(fitness.form.displayRounded, format: .number)
-        } caption: {
-            Text(FormZone(form: fitness.form).title)
+        GuideLink(.form) {
+            HUDMetric(title: "Form", color: Palette.form) {
+                Text(fitness.form.displayRounded, format: .number)
+            } caption: {
+                Text(FormZone(form: fitness.form).title)
+            }
         }
-        HUDMetric(title: "Fitness", color: Palette.fitness) {
+        GuideLink(.fitness) {
+            HUDMetric(title: "Fitness", color: Palette.fitness) {
             HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text(fitness.fitness.displayRounded, format: .number)
                 if let trend {
@@ -128,18 +131,42 @@ private struct HUDCard: View {
                         .font(.footnote)
                 }
             }
-        } caption: {
-            if let trend {
-                Text("\(Formatting.signed(trend.delta)) per week")
-            } else {
-                Text("trend after a week of data")
+            } caption: {
+                if let trend {
+                    Text("\(Formatting.signed(trend.delta)) per week")
+                } else {
+                    Text("trend after a week of data")
+                }
             }
         }
-        HUDMetric(title: "Load", color: Palette.fatigue) {
-            Text(weeklyStress.displayRounded, format: .number)
-        } caption: {
-            Text("TSS over 7 days")
+        GuideLink(.load) {
+            HUDMetric(title: "Load", color: Palette.fatigue) {
+                Text(weeklyStress.displayRounded, format: .number)
+            } caption: {
+                Text("TSS over 7 days")
+            }
         }
+    }
+}
+
+private struct GuideLink<Label: View>: View {
+    let metric: MetricsGuideView.Metric
+    @ViewBuilder let label: Label
+
+    init(_ metric: MetricsGuideView.Metric, @ViewBuilder label: () -> Label) {
+        self.metric = metric
+        self.label = label()
+    }
+
+    var body: some View {
+        NavigationLink {
+            MetricsGuideView(focus: metric)
+        } label: {
+            label
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .accessibilityHint(Text("Shows what this number means"))
     }
 }
 
@@ -151,8 +178,14 @@ private struct HUDMetric<Value: View, Caption: View>: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(title)
-                .consoleLabel()
+            HStack(spacing: 4) {
+                Text(title)
+                    .consoleLabel()
+                Image(systemName: "info.circle")
+                    .font(.caption2)
+                    .foregroundStyle(Palette.muted)
+                    .accessibilityHidden(true)
+            }
             value
                 .font(.system(.title2, design: .monospaced, weight: .bold))
                 .foregroundStyle(color)
@@ -205,9 +238,11 @@ private struct FormCard: View {
 private struct VolumeCard: View {
     @Environment(ActivityLibrary.self) private var library
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
+    @AppStorage(SportProfile.storageKey) private var profile: SportProfile = .triathlon
+    @Environment(AppNavigation.self) private var navigation
 
     private var rows: [(discipline: Discipline, current: Double, previous: Double)] {
-        Discipline.triathlon.compactMap { discipline in
+        profile.disciplines.compactMap { discipline in
             let weeks = library.weeklyVolume(discipline)
             guard weeks.reduce(0, +) > 0, let current = weeks.last else { return nil }
             return (discipline, current, weeks.dropLast().last ?? 0)
@@ -220,21 +255,34 @@ private struct VolumeCard: View {
                 Text("Volume this week")
                     .consoleLabel()
                 ForEach(rows, id: \.discipline) { row in
-                    ViewThatFits(in: .horizontal) {
-                        HStack(alignment: .firstTextBaseline) {
-                            name(row.discipline)
-                            Spacer()
-                            VStack(alignment: .trailing, spacing: 2) {
-                                current(row)
-                                previous(row)
+                    Button {
+                        navigation.show(row.discipline)
+                    } label: {
+                        HStack(spacing: 10) {
+                            ViewThatFits(in: .horizontal) {
+                                HStack(alignment: .firstTextBaseline) {
+                                    name(row.discipline)
+                                    Spacer()
+                                    VStack(alignment: .trailing, spacing: 2) {
+                                        current(row)
+                                        previous(row)
+                                    }
+                                }
+                                VStack(alignment: .leading, spacing: 2) {
+                                    name(row.discipline)
+                                    current(row)
+                                    previous(row)
+                                }
                             }
+                            Image(systemName: "chevron.right")
+                                .font(.footnote.weight(.semibold))
+                                .foregroundStyle(Palette.muted)
+                                .accessibilityHidden(true)
                         }
-                        VStack(alignment: .leading, spacing: 2) {
-                            name(row.discipline)
-                            current(row)
-                            previous(row)
-                        }
+                        .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
+                    .accessibilityHint(Text("Opens the discipline"))
                 }
             }
             .padding(16)

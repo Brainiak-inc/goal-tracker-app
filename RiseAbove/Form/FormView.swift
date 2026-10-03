@@ -44,6 +44,7 @@ struct FormView: View {
                             .foregroundStyle(Palette.muted)
                             .fixedSize(horizontal: false, vertical: true)
                     }
+                    readingGuide
                 } else {
                     ContentUnavailableView(
                         "No workouts yet",
@@ -57,6 +58,32 @@ struct FormView: View {
         }
         .background { ConsoleBackground() }
         .navigationTitle("Form")
+    }
+
+    private var readingGuide: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("How to read the chart")
+                .consoleLabel()
+            Text("The cyan line is fitness, the amber line is fatigue. The bars below show form: above zero you are fresh, below zero you carry fatigue. When fatigue rises above fitness, form goes negative, which is normal during a build.")
+                .font(.subheadline)
+                .foregroundStyle(Palette.muted)
+                .fixedSize(horizontal: false, vertical: true)
+            NavigationLink {
+                MetricsGuideView(focus: .fitness)
+            } label: {
+                HStack {
+                    Text("How the metrics are calculated")
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .font(.footnote.weight(.semibold))
+                }
+                .foregroundStyle(Palette.fitness)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+        }
+        .padding(16)
+        .consoleCard(brackets: false)
     }
 
     private var points: [LoadPoint] {

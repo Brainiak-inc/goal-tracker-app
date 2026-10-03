@@ -29,6 +29,7 @@ struct WorkoutProbe: Identifiable, Hashable, Sendable {
     let heartRateSources: [String]
     let averagePower: Double?
     let calories: Double?
+    var elevationGain: Double?
 
     var distance: Double? {
         workoutDistance ?? sampleDistance
@@ -61,7 +62,8 @@ struct WorkoutProbe: Identifiable, Hashable, Sendable {
             averageHeartRate: averageHeartRate,
             maxHeartRate: maxHeartRate,
             calories: calories,
-            externalID: Self.externalID(id)
+            externalID: Self.externalID(id),
+            elevationGain: elevationGain
         )
     }
 

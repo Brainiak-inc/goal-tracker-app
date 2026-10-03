@@ -1,43 +1,18 @@
 import Foundation
 
-public enum RaceDistance: String, Codable, CaseIterable, Sendable {
-    case full
-    case half
+public struct RaceNorm: Codable, Hashable, Sendable {
+    public var discipline: Discipline
+    public var weekly: Double
+    public var longest: Double
 
-    public var cutoff: TimeInterval {
-        switch self {
-        case .full: 17 * 3600
-        case .half: 8.5 * 3600
-        }
+    public init(discipline: Discipline, weekly: Double, longest: Double) {
+        self.discipline = discipline
+        self.weekly = weekly
+        self.longest = longest
     }
 
-    var transitionTime: TimeInterval {
-        switch self {
-        case .full: 12 * 60
-        case .half: 8 * 60
-        }
-    }
-
-    func target(for discipline: Discipline) -> (weekly: Double, longest: Double) {
-        switch (self, discipline) {
-        case (.full, .swim): (6_000, 3_000)
-        case (.full, .bike): (180_000, 120_000)
-        case (.full, _): (40_000, 28_000)
-        case (.half, .swim): (3_000, 1_900)
-        case (.half, .bike): (110_000, 80_000)
-        case (.half, _): (25_000, 16_000)
-        }
-    }
-
-    public func leg(for discipline: Discipline) -> Double {
-        switch (self, discipline) {
-        case (.full, .swim): 3_800
-        case (.full, .bike): 180_000
-        case (.full, _): 42_200
-        case (.half, .swim): 1_900
-        case (.half, .bike): 90_000
-        case (.half, _): 21_100
-        }
+    var isValid: Bool {
+        weekly > 0 && longest > 0
     }
 }
 
@@ -47,20 +22,62 @@ public struct RaceConfig: Codable, Hashable, Sendable {
     public var targetTime: TimeInterval
     public var weeklyHours: Double?
     public var fromZero: Bool
+    public var manualNorms: [RaceNorm]?
+    public var timeLimit: TimeInterval?
 
     public init(
         distance: RaceDistance,
         raceDay: Date? = nil,
         targetTime: TimeInterval? = nil,
         weeklyHours: Double? = nil,
-        fromZero: Bool = false
+        fromZero: Bool = false,
+        manualNorms: [RaceNorm]? = nil,
+        timeLimit: TimeInterval? = nil
     ) {
         self.distance = distance
         self.raceDay = raceDay
-        self.targetTime = targetTime ?? distance.cutoff
+        self.targetTime = timeLimit ?? targetTime ?? distance.cutoff
         self.weeklyHours = weeklyHours
         self.fromZero = fromZero
+        self.manualNorms = manualNorms
+        self.timeLimit = timeLimit
     }
+
+    public var isTimed: Bool {
+        timeLimit != nil
+    }
+
+    public var hasGoalDistance: Bool {
+        !isTimed || distance.total > 0
+    }
+
+    public var planningDistance: RaceDistance {
+        guard let timeLimit, distance.total <= 0, let discipline = distance.disciplines.first else { return distance }
+        let speed = RaceNorms.timedReferenceSpeed[discipline] ?? 2
+        return RaceDistance(sport: distance.sport, legs: [discipline: timeLimit * speed])
+    }
+
+    public var hasManualNorms: Bool {
+        !(manualNorms ?? []).isEmpty
+    }
+}
+
+public enum ReadinessModel: Sendable {
+    case legacy
+    case adaptive
+}
+
+public struct ReadinessComponent: Hashable, Sendable {
+    public enum Kind: Sendable {
+        case volume
+        case longest
+        case load
+        case consistency
+    }
+
+    public let kind: Kind
+    public let ratio: Double
+    public let weight: Double
 }
 
 public struct DisciplineReadiness: Hashable, Sendable {
@@ -70,6 +87,10 @@ public struct DisciplineReadiness: Hashable, Sendable {
     public let targetWeeklyDistance: Double
     public let longestDistance: Double
     public let targetLongestDistance: Double
+    public var activeWeeks: Int?
+    public var fitness: Double?
+    public var targetFitness: Double?
+    public var components: [ReadinessComponent] = []
 }
 
 public enum RaceStatus: String, Sendable {
@@ -109,11 +130,11 @@ public struct Readiness: Hashable, Sendable {
     public let fitnessBonus: Int
     public let nextWeek: [WeeklyStep]
     public let pace: [PaceCheck]
+    public let prediction: RacePrediction?
 }
 
 public enum ReadinessCalculator {
     static let fitnessBonus = 4
-    static let legShare: [Discipline: Double] = [.swim: 0.14, .bike: 0.47, .run: 0.39]
     static let week: TimeInterval = 7 * 24 * 3600
     static let weeksPerMonth = 4.345
 
@@ -121,28 +142,21 @@ public enum ReadinessCalculator {
         config: RaceConfig,
         activities: [Activity],
         fitness snapshot: FitnessSnapshot? = nil,
+        settings: AthleteSettings? = nil,
+        model: ReadinessModel = .adaptive,
         now: Date,
         calendar: Calendar
     ) -> Readiness {
-        let goalFactor = paceFactor(config)
         let ramp = config.fromZero ? 0.045 : 0.07
+        let daysToRace = config.raceDay.map { calendar.startOfDay(for: $0).timeIntervalSince(now) / 86_400 }
 
-        let disciplines = Discipline.triathlon.map { discipline in
-            let base = config.distance.target(for: discipline)
-            let targetWeekly = base.weekly * goalFactor
-            let targetLongest = base.longest * goalFactor
-            let weekly = weeklyAverage(activities, discipline, now: now, weeks: 4)
-            let longest = longestSession(activities, discipline, now: now, weeks: 12)
-            let volumeRatio = min(1, weekly / targetWeekly)
-            let longestRatio = min(1, longest / targetLongest)
-            return DisciplineReadiness(
-                discipline: discipline,
-                percent: Int(jsRound((0.6 * volumeRatio + 0.4 * longestRatio) * 100)),
-                weeklyDistance: weekly,
-                targetWeeklyDistance: targetWeekly,
-                longestDistance: longest,
-                targetLongestDistance: targetLongest
-            )
+        let disciplines = norms(for: config).map { norm in
+            switch model {
+            case .legacy:
+                legacyReadiness(norm, activities: activities, now: now)
+            case .adaptive:
+                AdaptiveReadiness.evaluate(norm, activities: activities, settings: settings, daysToRace: daysToRace, now: now, calendar: calendar)
+            }
         }
 
         let percents = disciplines.map { Double($0.percent) }
@@ -177,9 +191,10 @@ public enum ReadinessCalculator {
             }
         }
 
-        let movingTime = max(1, config.targetTime - config.distance.transitionTime)
-        let pace = Discipline.triathlon.map { discipline in
-            let required = config.distance.leg(for: discipline) / (movingTime * (legShare[discipline] ?? 0))
+        let distance = config.planningDistance
+        let movingTime = max(1, config.targetTime - distance.transitionTime)
+        let pace = distance.disciplines.map { discipline in
+            let required = distance.leg(for: discipline) / (movingTime * distance.share(for: discipline))
             let current = averageSpeed(activities, discipline, now: now, weeks: 12)
             return PaceCheck(
                 discipline: discipline,
@@ -216,13 +231,61 @@ public enum ReadinessCalculator {
             fitnessTrend: snapshot?.fitnessTrend,
             fitnessBonus: bonus,
             nextWeek: nextWeek,
-            pace: pace
+            pace: pace,
+            prediction: RacePredictor.predict(
+                config: config,
+                activities: activities,
+                longest: disciplines.first?.longestDistance ?? 0,
+                volumeRatio: disciplines.first.map { $0.targetWeeklyDistance > 0 ? $0.weeklyDistance / $0.targetWeeklyDistance : 0 } ?? 0,
+                now: now
+            )
         )
+    }
+
+    static func legacyReadiness(_ norm: RaceNorm, activities: [Activity], now: Date) -> DisciplineReadiness {
+        let weekly = weeklyAverage(activities, norm.discipline, now: now, weeks: 4)
+        let longest = longestSession(activities, norm.discipline, now: now, weeks: 12)
+        let volumeRatio = min(1, weekly / norm.weekly)
+        let longestRatio = min(1, longest / norm.longest)
+        var readiness = DisciplineReadiness(
+            discipline: norm.discipline,
+            percent: Int(jsRound((0.6 * volumeRatio + 0.4 * longestRatio) * 100)),
+            weeklyDistance: weekly,
+            targetWeeklyDistance: norm.weekly,
+            longestDistance: longest,
+            targetLongestDistance: norm.longest
+        )
+        readiness.components = [
+            ReadinessComponent(kind: .volume, ratio: volumeRatio, weight: 0.6),
+            ReadinessComponent(kind: .longest, ratio: longestRatio, weight: 0.4)
+        ]
+        return readiness
+    }
+
+    public static func automaticNorms(for config: RaceConfig) -> [RaceNorm] {
+        let goalFactor = paceFactor(config)
+        let distance = config.planningDistance
+        return distance.disciplines.map { discipline in
+            let base = distance.target(for: discipline)
+            let scaledLongest = base.longest * goalFactor
+            return RaceNorm(
+                discipline: discipline,
+                weekly: base.weekly * goalFactor,
+                longest: distance.longestCap(for: discipline).map { min(scaledLongest, $0) } ?? scaledLongest
+            )
+        }
+    }
+
+    public static func norms(for config: RaceConfig) -> [RaceNorm] {
+        let manual = config.manualNorms ?? []
+        return automaticNorms(for: config).map { automatic in
+            manual.first { $0.discipline == automatic.discipline && $0.isValid } ?? automatic
+        }
     }
 
     static func paceFactor(_ config: RaceConfig) -> Double {
         guard config.targetTime > 0 else { return 1 }
-        return min(2, max(1, config.distance.cutoff / config.targetTime))
+        return min(2, max(1, config.planningDistance.cutoff / config.targetTime))
     }
 
     static func monthsToReady(_ disciplines: [DisciplineReadiness], ramp: Double, fromZero: Bool) -> Int {

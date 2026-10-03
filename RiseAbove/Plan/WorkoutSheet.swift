@@ -17,6 +17,7 @@ struct WorkoutSheet: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.calendar) private var calendar
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
+    @AppStorage(SportProfile.storageKey) private var profile: SportProfile = .triathlon
 
     @State private var weekID: UUID
     @State private var day: Int
@@ -35,6 +36,12 @@ struct WorkoutSheet: View {
         _distanceText = State(initialValue: "")
         _title = State(initialValue: draft.workout.title)
         _note = State(initialValue: draft.workout.note)
+    }
+
+    private var disciplines: [Discipline] {
+        Discipline.allCases.filter { item in
+            !item.isTriathlon || profile.disciplines.contains(item) || item == draft.workout.discipline
+        }
     }
 
     var body: some View {
@@ -57,7 +64,7 @@ struct WorkoutSheet: View {
 
                 Section("Discipline") {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 104), spacing: 8)], alignment: .leading, spacing: 8) {
-                        ForEach(Discipline.allCases, id: \.self) { item in
+                        ForEach(disciplines, id: \.self) { item in
                             Button {
                                 discipline = item
                             } label: {
