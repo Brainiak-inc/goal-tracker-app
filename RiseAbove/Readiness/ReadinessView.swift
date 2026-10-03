@@ -22,7 +22,12 @@ struct ReadinessView: View {
                         )
                         Text(config.summary(units: units))
                             .consoleLabel()
-                        ReadinessHero(readiness: readiness)
+                        NavigationLink {
+                            ReadinessGuideView(readiness: readiness, config: config)
+                        } label: {
+                            ReadinessHero(readiness: readiness)
+                        }
+                        .buttonStyle(.plain)
                         if !readiness.hasVolume {
                             Text("There's no volume to assess yet. Import your workouts.")
                                 .foregroundStyle(Palette.fatigue)
@@ -37,6 +42,20 @@ struct ReadinessView: View {
                         if readiness.prediction == nil {
                             PaceCard(checks: readiness.pace)
                         }
+                        NavigationLink {
+                            ReadinessGuideView(readiness: readiness, config: config)
+                        } label: {
+                            HStack {
+                                Label("How readiness is calculated", systemImage: "info.circle")
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.footnote.weight(.semibold))
+                            }
+                            .foregroundStyle(Palette.fitness)
+                            .padding(16)
+                            .consoleCard(brackets: false)
+                        }
+                        .buttonStyle(.plain)
                         Text("A volume-based estimate to guide you, not a medical assessment.")
                             .font(.caption)
                             .foregroundStyle(Palette.muted)

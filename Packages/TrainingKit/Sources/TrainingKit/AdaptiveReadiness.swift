@@ -34,15 +34,24 @@ enum AdaptiveReadiness {
 
         var fitness: Double?
         var targetFitness: Double?
-        let score: Double
+        let components: [ReadinessComponent]
         if let settings, let load = load(norm, activities: activities, settings: settings, now: now, calendar: calendar) {
             fitness = load.fitness
             targetFitness = load.target
-            let loadRatio = min(1, load.fitness / load.target)
-            score = 0.4 * volumeRatio + 0.3 * longestRatio + 0.2 * loadRatio + 0.1 * consistency
+            components = [
+                ReadinessComponent(kind: .volume, ratio: volumeRatio, weight: 0.4),
+                ReadinessComponent(kind: .longest, ratio: longestRatio, weight: 0.3),
+                ReadinessComponent(kind: .load, ratio: min(1, load.fitness / load.target), weight: 0.2),
+                ReadinessComponent(kind: .consistency, ratio: consistency, weight: 0.1)
+            ]
         } else {
-            score = 0.5 * volumeRatio + 0.35 * longestRatio + 0.15 * consistency
+            components = [
+                ReadinessComponent(kind: .volume, ratio: volumeRatio, weight: 0.5),
+                ReadinessComponent(kind: .longest, ratio: longestRatio, weight: 0.35),
+                ReadinessComponent(kind: .consistency, ratio: consistency, weight: 0.15)
+            ]
         }
+        let score = components.reduce(0) { $0 + $1.ratio * $1.weight }
 
         var readiness = DisciplineReadiness(
             discipline: norm.discipline,
@@ -55,6 +64,7 @@ enum AdaptiveReadiness {
         readiness.activeWeeks = activeWeeks
         readiness.fitness = fitness
         readiness.targetFitness = targetFitness
+        readiness.components = components
         return readiness
     }
 

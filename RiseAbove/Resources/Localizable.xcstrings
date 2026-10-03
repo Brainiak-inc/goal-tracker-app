@@ -31,6 +31,16 @@
         }
       }
     },
+    "%@ of %@ a week" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ из %2$@ в неделю"
+          }
+        }
+      }
+    },
     "%@ of %@ · %lld%%" : {
       "localizations" : {
         "ru" : {
@@ -545,6 +555,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Безопасный недельный прирост к целевому объёму."
+          }
+        }
+      }
+    },
+    "A steady rise of a few points a week is a healthy build. Sharp jumps raise the risk of overload." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ровный рост на несколько очков в неделю — здоровое развитие. Резкие скачки повышают риск перегрузки."
           }
         }
       }
@@ -1071,6 +1091,16 @@
         }
       }
     },
+    "Cutoff for this distance: %@." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Контрольное время для этой дистанции: %@."
+          }
+        }
+      }
+    },
     "Cutoff for this distance: %@. A faster goal raises the target volumes." : {
       "localizations" : {
         "ru" : {
@@ -1291,6 +1321,26 @@
         }
       }
     },
+    "Each part counts up to 100 percent and is multiplied by its weight." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждая часть засчитывается максимум на 100 процентов и умножается на свой вес."
+          }
+        }
+      }
+    },
+    "Each workout gets load points for how long and how hard it was. An hour at your threshold heart rate is 100 points." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждая тренировка получает очки нагрузки за длительность и интенсивность. Час на пороговом пульсе — 100 очков."
+          }
+        }
+      }
+    },
     "Earlier workouts are hidden. You can change the period in Settings → Workout period." : {
       "localizations" : {
         "ru" : {
@@ -1347,6 +1397,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Оценка по пробежкам от 20 минут"
+          }
+        }
+      }
+    },
+    "Every day fatigue moves one seventh of the way towards that day's load." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждый день усталость сдвигается на одну седьмую расстояния до нагрузки этого дня."
+          }
+        }
+      }
+    },
+    "Every day fitness moves one forty-second of the way towards that day's load." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Каждый день фитнес сдвигается на одну сорок вторую расстояния до нагрузки этого дня."
           }
         }
       }
@@ -1477,6 +1547,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Фитнес стабилен — оценка только по объёму."
+          }
+        }
+      }
+    },
+    "Fitness minus fatigue as of yesterday. Above zero you are fresh, below zero you carry fatigue from recent training." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Фитнес минус усталость на вчерашний день. Выше нуля организм отдохнул, ниже нуля накоплена усталость от недавних тренировок."
           }
         }
       }
@@ -1651,6 +1731,16 @@
         }
       }
     },
+    "Half of it comes from the weakest discipline and half from the average of all of them, so one lagging discipline holds the whole race back." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Половина берётся от самой слабой дисциплины и половина — от среднего по всем, так что одна отстающая дисциплина тянет вниз весь старт."
+          }
+        }
+      }
+    },
     "Health check" : {
       "localizations" : {
         "ru" : {
@@ -1781,12 +1871,196 @@
         }
       }
     },
+    "Hours × (average heart rate ÷ threshold heart rate)² × 100. Workouts without heart rate add no load." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Часы × (средний пульс ÷ пороговый пульс)² × 100. Тренировки без пульса нагрузку не добавляют."
+          }
+        }
+      }
+    },
+    "How it is calculated" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как считается"
+          }
+        }
+      }
+    },
+    "How readiness is calculated" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как считается готовность"
+          }
+        }
+      }
+    },
     "How ready are you for the start?" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Оцени свою готовность к старту"
+          }
+        }
+      }
+    },
+    "How the app turns your workouts into fitness, fatigue, and form." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как приложение превращает тренировки в фитнес, усталость и форму."
+          }
+        }
+      }
+    },
+    "How the metrics are calculated" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как считаются показатели"
+          }
+        }
+      }
+    },
+    "How tired you are from recent training: the same average, but over about a week. It reacts quickly to hard days and to rest." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Накопленная усталость от недавних тренировок: то же среднее, но примерно за неделю. Быстро реагирует на тяжёлые дни и на отдых."
+          }
+        }
+      }
+    },
+    "How to read it" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как читать"
+          }
+        }
+      }
+    },
+    "How to read the chart" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как читать график"
+          }
+        }
+      }
+    },
+    "If weekly volume grows by 4.5 percent a week, the targets are reached in about %lld months, with three extra months of buffer for a start from scratch." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "If weekly volume grows by 4.5 percent a week, the targets are reached in about %lld month, with three extra months of buffer for a start from scratch."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "If weekly volume grows by 4.5 percent a week, the targets are reached in about %lld months, with three extra months of buffer for a start from scratch."
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Если недельный объём растёт на 4,5 процента в неделю, нормы будут достигнуты примерно за %lld месяц, включая три месяца запаса на старт с нуля."
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Если недельный объём растёт на 4,5 процента в неделю, нормы будут достигнуты примерно за %lld месяца, включая три месяца запаса на старт с нуля."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Если недельный объём растёт на 4,5 процента в неделю, нормы будут достигнуты примерно за %lld месяцев, включая три месяца запаса на старт с нуля."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Если недельный объём растёт на 4,5 процента в неделю, нормы будут достигнуты примерно за %lld месяца, включая три месяца запаса на старт с нуля."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "If weekly volume grows by 7 percent a week, the targets are reached in about %lld months, including a month of buffer." : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "If weekly volume grows by 7 percent a week, the targets are reached in about %lld month, including a month of buffer."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "If weekly volume grows by 7 percent a week, the targets are reached in about %lld months, including a month of buffer."
+                }
+              }
+            }
+          }
+        },
+        "ru" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Если недельный объём растёт на 7 процентов в неделю, нормы будут достигнуты примерно за %lld месяц, включая месяц запаса."
+                }
+              },
+              "few" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Если недельный объём растёт на 7 процентов в неделю, нормы будут достигнуты примерно за %lld месяца, включая месяц запаса."
+                }
+              },
+              "many" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Если недельный объём растёт на 7 процентов в неделю, нормы будут достигнуты примерно за %lld месяцев, включая месяц запаса."
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Если недельный объём растёт на 7 процентов в неделю, нормы будут достигнуты примерно за %lld месяца, включая месяц запаса."
+                }
+              }
+            }
           }
         }
       }
@@ -1897,6 +2171,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Входит в триатлон"
+          }
+        }
+      }
+    },
+    "It gets slower when your longest sessions fall short of the distance or your weekly volume is below the target, because both limit how long you can hold the pace." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прогноз замедляется, если самые длинные тренировки короче дистанции или недельный объём ниже нормы: и то и другое ограничивает, как долго получится держать темп."
+          }
+        }
+      }
+    },
+    "It is the readiness of your only discipline." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Это готовность по твоей единственной дисциплине."
           }
         }
       }
@@ -2067,6 +2361,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Метрическая"
+          }
+        }
+      }
+    },
+    "Metrics" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показатели"
           }
         }
       }
@@ -2371,12 +2675,32 @@
         }
       }
     },
+    "Opens the discipline" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Открывает дисциплину"
+          }
+        }
+      }
+    },
     "Other" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Другое"
+          }
+        }
+      }
+    },
+    "Overall" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общая"
           }
         }
       }
@@ -2417,6 +2741,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Темп"
+          }
+        }
+      }
+    },
+    "Pace compares your average training speed over 12 weeks with the speed the target time needs in each discipline." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темп сравнивает твою среднюю скорость на тренировках за 12 недель со скоростью, которая нужна для целевого времени в каждой дисциплине."
           }
         }
       }
@@ -2597,6 +2931,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Готовность"
+          }
+        }
+      }
+    },
+    "Readiness compares your recent training with what the race needs. It is an estimate to guide you, not a medical assessment." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Готовность сравнивает твои недавние тренировки с тем, что нужно для старта. Это ориентир, а не медицинская оценка."
           }
         }
       }
@@ -2881,6 +3225,16 @@
         }
       }
     },
+    "Shows what this number means" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Показывает, что значит это число"
+          }
+        }
+      }
+    },
     "Skip" : {
       "localizations" : {
         "ru" : {
@@ -3131,12 +3485,52 @@
         }
       }
     },
+    "Targets" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нормы"
+          }
+        }
+      }
+    },
+    "Targets come from the race distance and your target time. The faster the goal, the higher the targets, up to twice the base for a slow finish." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нормы зависят от дистанции и целевого времени. Чем быстрее цель, тем выше нормы, максимум вдвое выше базы для медленного финиша."
+          }
+        }
+      }
+    },
+    "Targets come from the time limit at an easy pace, since there is no goal distance." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нормы считаются от лимита времени при спокойном темпе, потому что цели по дистанции нет."
+          }
+        }
+      }
+    },
     "The adherence calendar was carried over." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Календарь выполнения перенесён."
+          }
+        }
+      }
+    },
+    "The cyan line is fitness, the amber line is fatigue. The bars below show form: above zero you are fresh, below zero you carry fatigue. When fatigue rises above fitness, form goes negative, which is normal during a build." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Бирюзовая линия — фитнес, янтарная — усталость. Столбики внизу показывают форму: выше нуля организм отдохнул, ниже нуля накоплена усталость. Когда усталость выше фитнеса, форма уходит в минус — это нормально во время набора."
           }
         }
       }
@@ -3157,6 +3551,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "В первый раз это может занять минуту: загружается вся история тренировок."
+          }
+        }
+      }
+    },
+    "The fitness trend adds or removes up to 4 points. Now: %@." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тренд фитнеса добавляет или снимает до 4 пунктов. Сейчас: %@."
+          }
+        }
+      }
+    },
+    "The forecast takes your best effort of the last 12 weeks and recalculates it to the race distance with Riegel's formula, a standard method in running." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прогноз берёт твою лучшую тренировку за последние 12 недель и пересчитывает её на дистанцию старта по формуле Ригеля — стандартному способу в беге."
           }
         }
       }
@@ -3297,6 +3711,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Лимит времени"
+          }
+        }
+      }
+    },
+    "Time to be ready" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Срок до готовности"
           }
         }
       }
@@ -3531,6 +3955,16 @@
         }
       }
     },
+    "Weekly volume" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недельный объём"
+          }
+        }
+      }
+    },
     "Weeks are numbered without dates. Plan and actual volume are compared only for dated plans." : {
       "localizations" : {
         "ru" : {
@@ -3547,6 +3981,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Недели начинаются с понедельника, %@."
+          }
+        }
+      }
+    },
+    "Weeks with training" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недели с тренировками"
           }
         }
       }
@@ -3577,6 +4021,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Что ты тренируешь?"
+          }
+        }
+      }
+    },
+    "What it is" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Что это"
           }
         }
       }
@@ -3711,6 +4165,16 @@
         }
       }
     },
+    "You set your own targets for this goal. They can be changed in the goal settings." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для этой цели заданы свои нормы. Их можно поменять в настройках цели."
+          }
+        }
+      }
+    },
     "Your goal" : {
       "localizations" : {
         "ru" : {
@@ -3731,12 +4195,42 @@
         }
       }
     },
+    "Your training base: the average daily load over about six weeks, where recent days count more. It grows and fades slowly." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Твоя тренировочная база: средняя дневная нагрузка примерно за шесть недель, где свежие дни весят больше. Растёт и снижается медленно."
+          }
+        }
+      }
+    },
+    "Your weekly volumes are already at the target level." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недельные объёмы уже на уровне нормы."
+          }
+        }
+      }
+    },
     "about %@ years" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "около %@ года"
+          }
+        }
+      }
+    },
+    "above +5" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "выше +5"
           }
         }
       }
@@ -3761,6 +4255,16 @@
         }
       }
     },
+    "below −30" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ниже −30"
+          }
+        }
+      }
+    },
     "building fitness" : {
       "localizations" : {
         "ru" : {
@@ -3777,6 +4281,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "дата не выбрана"
+          }
+        }
+      }
+    },
+    "estimated from runs of 20 minutes or longer" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "оценён по пробежкам от 20 минут"
           }
         }
       }
@@ -3913,6 +4427,26 @@
         }
       }
     },
+    "last 12 weeks, older sessions count a little less" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "за 12 недель, давние тренировки весят чуть меньше"
+          }
+        }
+      }
+    },
+    "load from heart rate, so intensity matters too" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "нагрузка по пульсу, поэтому важна и интенсивность"
+          }
+        }
+      }
+    },
     "longest" : {
       "localizations" : {
         "ru" : {
@@ -3983,6 +4517,26 @@
         }
       }
     },
+    "normal training" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "обычные тренировки"
+          }
+        }
+      }
+    },
+    "out of the last six weeks" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "из последних шести недель"
+          }
+        }
+      }
+    },
     "over 42 days" : {
       "localizations" : {
         "ru" : {
@@ -4043,6 +4597,46 @@
         }
       }
     },
+    "productive fatigue: fitness is growing" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "продуктивная усталость: фитнес растёт"
+          }
+        }
+      }
+    },
+    "recent weeks count more, and the taper before a race is not penalised" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "свежие недели весят больше, а снижение объёма перед стартом не штрафуется"
+          }
+        }
+      }
+    },
+    "rested: a good time for a race or a test" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "отдых: хорошее время для старта или контрольной тренировки"
+          }
+        }
+      }
+    },
+    "set manually" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "задан вручную"
+          }
+        }
+      }
+    },
     "sport, date, and duration" : {
       "localizations" : {
         "ru" : {
@@ -4069,6 +4663,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "сегодня"
+          }
+        }
+      }
+    },
+    "too much fatigue: add rest days" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "слишком много усталости: добавь дни отдыха"
           }
         }
       }
@@ -4109,6 +4713,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "План «%@» и все его недели будут удалены."
+          }
+        }
+      }
+    },
+    "−10 to +5" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "от −10 до +5"
+          }
+        }
+      }
+    },
+    "−30 to −10" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "от −30 до −10"
           }
         }
       }

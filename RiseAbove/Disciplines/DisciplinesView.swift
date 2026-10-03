@@ -4,6 +4,7 @@ import TrainingKit
 struct DisciplinesView: View {
     @Environment(ActivityLibrary.self) private var library
     @Environment(HealthSync.self) private var healthSync
+    @Environment(AppNavigation.self) private var navigation
     @AppStorage(UnitSystem.storageKey) private var units: UnitSystem = .metric
     @AppStorage(SportProfile.storageKey) private var profile: SportProfile = .triathlon
     @State private var selection: Discipline?
@@ -43,6 +44,12 @@ struct DisciplinesView: View {
             .settingsToolbar()
             .sheet(item: $selectedActivity) { activity in
                 ActivityDetailSheet(activity: activity)
+            }
+            .onChange(of: navigation.requestedDiscipline, initial: true) { _, requested in
+                guard let requested else { return }
+                selectedWeek = nil
+                selection = requested
+                navigation.requestedDiscipline = nil
             }
         }
     }

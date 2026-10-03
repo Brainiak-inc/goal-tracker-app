@@ -77,6 +77,10 @@ struct AdaptiveReadinessTests {
         #expect((withLoad.targetFitness ?? 0) > 0)
         let withoutHeartRate = evaluate(runs.map { var activity = $0; activity.averageHeartRate = nil; return activity }, settings: settings)
         #expect(withoutHeartRate.fitness == nil)
+        #expect(abs(withLoad.components.map(\.weight).reduce(0, +) - 1) < 0.0001)
+        #expect(withLoad.components.contains { $0.kind == .load })
+        #expect(!withoutHeartRate.components.contains { $0.kind == .load })
+        #expect(abs(withoutHeartRate.components.map(\.weight).reduce(0, +) - 1) < 0.0001)
     }
 
     @Test func legacyModelStaysAvailable() {

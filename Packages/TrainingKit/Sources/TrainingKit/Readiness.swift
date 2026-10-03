@@ -67,6 +67,19 @@ public enum ReadinessModel: Sendable {
     case adaptive
 }
 
+public struct ReadinessComponent: Hashable, Sendable {
+    public enum Kind: Sendable {
+        case volume
+        case longest
+        case load
+        case consistency
+    }
+
+    public let kind: Kind
+    public let ratio: Double
+    public let weight: Double
+}
+
 public struct DisciplineReadiness: Hashable, Sendable {
     public let discipline: Discipline
     public let percent: Int
@@ -77,6 +90,7 @@ public struct DisciplineReadiness: Hashable, Sendable {
     public var activeWeeks: Int?
     public var fitness: Double?
     public var targetFitness: Double?
+    public var components: [ReadinessComponent] = []
 }
 
 public enum RaceStatus: String, Sendable {
@@ -233,7 +247,7 @@ public enum ReadinessCalculator {
         let longest = longestSession(activities, norm.discipline, now: now, weeks: 12)
         let volumeRatio = min(1, weekly / norm.weekly)
         let longestRatio = min(1, longest / norm.longest)
-        return DisciplineReadiness(
+        var readiness = DisciplineReadiness(
             discipline: norm.discipline,
             percent: Int(jsRound((0.6 * volumeRatio + 0.4 * longestRatio) * 100)),
             weeklyDistance: weekly,
@@ -241,6 +255,11 @@ public enum ReadinessCalculator {
             longestDistance: longest,
             targetLongestDistance: norm.longest
         )
+        readiness.components = [
+            ReadinessComponent(kind: .volume, ratio: volumeRatio, weight: 0.6),
+            ReadinessComponent(kind: .longest, ratio: longestRatio, weight: 0.4)
+        ]
+        return readiness
     }
 
     public static func automaticNorms(for config: RaceConfig) -> [RaceNorm] {
